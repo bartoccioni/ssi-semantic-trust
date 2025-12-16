@@ -4,7 +4,7 @@ This repository contains the *Handbook* of all the concepts, ideas, clarificatio
 ## The `List`
 The `List` is like a summary that contains all the above-mentioned topics and can be used sequentially or by randomly accessing a specific topic; the only rule is that you may need some of the previous topics' content to fully understand the one you choose.
 
-- Technical knowledge background
+- [Technical knowledge background](./topics/tech-knowledge.MD)
 - Digital Identities
 - SSI Trust Architecture
 - Semantic Model of IAA (Identity, Authentication, and Authorisation)
