@@ -5,6 +5,10 @@ This section is dedicated to list all the technical specifications, information,
 
 - [Decentralized Identifiers (DIDs)](https://www.w3.org/TR/did-1.0/) are URIs that enable verifiable, self-sovereign digital identity without requiring a single centralised registry or authority, although they may be anchored in distributed or decentralised registries. A DID resolves to a DID Document that typically contains one or more verification methods, each associated with cryptographic key material.
 
+- [Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) or asymmetric cryptography, is the field of cryptographic systems that use pairs of related keys. Each key pair consists of a public key and a corresponding private key.
+
+- [Public Key infrastructure (PKI)](https://en.wikipedia.org/wiki/Public_key_infrastructure) that basically is a set of roles, policies, hardware, software and procedures needed to create, manage, distribute, use, store and revoke digital certificates and manage public-key encryption.
+
 - [SHACL (Shapes Constraint Language)](https://www.w3.org/TR/shacl/) is a W3C standard for defining shapes, i.e., constraints on RDF graphs, and validating that data (RDF graphs) conform to those shapes.
 Shapes express constraints on property paths, cardinalities, datatype restrictions, and logical combinations, and may use extension languages like SPARQL to express more complex validation rules.
 
