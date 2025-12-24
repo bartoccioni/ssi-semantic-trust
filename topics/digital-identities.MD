@@ -23,15 +23,15 @@ This layer is always present and topmost, representing the foundation for all th
 ### Trusted Identity Layer
 
 This layer is present when an **Intermediary of Trust** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of intermediaries of trust that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
-- Self-Sovereign Identity-based (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the intermediary itself.
+- Self-Sovereign Identity-based (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the intermediary itself in a privacy preserving way.
   - **Standard Intermediary** - This kind of intermediary trusts the DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the intermediary cannot trust a specific cryptographic identity.
   - **Strongly Bound Intermediary** - This kind of intermediary trusts ONLY a specific cryptographic identity (its public key) contained in the DID document.
-- Public Key Infrastructure-based (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that may contain additional information of the trusted party. 
+- Public Key Infrastructure-based (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that contain additional information of the trusted party. 
   - **Autonomous Intermediary** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
-  - **Standard Intermediary** This kind of intermediary is part of an existing trusted PKI (like CA/B Forum for SSL X509 Certificates).
-  - **Qualified Certificate Authority (CA) Intermediary** same as previous, but the CA is an eIDAS Qualified Trust Service Provider and is also used to perform Qualified Electronic Signatures.
+  - **Standard Intermediary** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
+  - **Qualified Certificate Authority (CA) Intermediary** same as previous, but in this case, the intermediary is part of the European eIDAS and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
-Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document. 
+Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both work together
 
 ### Semantic Identity Layer
 
