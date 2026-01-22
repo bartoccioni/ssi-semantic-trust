@@ -31,24 +31,22 @@ This layer is present when an **Intermediary of Trust** (also referred to as **T
   - **Standard Intermediary** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
   - **Qualified Certificate Authority (CA) Intermediary** same as previous, but in this case, the intermediary is part of the European eIDAS and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
-Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both work together
+Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
+
+#### Cryptographic and Trusted Identity Layers combined
+Here is a list showing the result of some outecomes of combining  the two Identity Layers to classify actors :
+
+| Combination | Description |
+| --- | ----------- |
+| Anonymous | Keypair self-issued and no info on way to control |
+| Anonymous Machine Controlled | Keypair self-issued and direct access control by machine or process  |
+| Anonymous Human Controlled | Keypair managed by a device wallet controlled by a human (multi-factor authenticated) |
+| Manchine Controlled | Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and fully controlled by a machine or process |
+| Human Controlled | Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated) |
+| eIDAS Machine Controlled | Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and fully controlled by machine or process |
+| eIDAS Human Controlled | Keypair bound (associated) to a credential (VC, X509) issued by  an eIDAS Qualified Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated) |
+
 
 ### Semantic Identity Layer
 
-
-
-```
-      Anonymous:
-        description: Keypair self issued and no info on controller 
-      AnonymousMachineControlled:
-        description: Keypair self issued and controlled by machine or process
-      AnonymousHumanControlled:
-        description: Keypair managed by a device wallet controlled by a human (multi-factor authenticated)
-      ManchineControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and fully controlled by a machine or process
-      HumanControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
-      eIDASMachineControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and fully controlled by machine or process
-      eIDASHumanControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by  an eIDAS Qualified Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
+This layer is where a digital identity becomes meaningful and is enriched with information that is useful to interact with it in a certain scope. 
