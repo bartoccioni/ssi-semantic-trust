@@ -24,9 +24,9 @@ This layer is present when an **Intermediary of Trust** (also referred to as **T
   - **Strongly Bound** - This kind of intermediary trusts ONLY a specific cryptographic identity (its public key) contained in the DID document.
 - **Public Key Infrastructure-based** (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that contain additional information of the trusted party. 
 For both categories, there are three levels of trust
-  - **Autonomous** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
-  - **Standard** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
-  - **Qualified (Europe Only)** same as previous, but in this case, the intermediary is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
+- **Autonomous** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
+- **Standard** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
+- **Qualified (Europe Only)** same as previous, but in this case, the intermediary is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
 Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
 
