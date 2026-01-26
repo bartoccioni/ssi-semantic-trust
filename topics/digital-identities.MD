@@ -2,7 +2,7 @@
 Digital identities are the first important piece to deal with when approaching "Semantic Trust" and also the easiest to be confused about; they can be seen as built on layers that always start from the **Cryptographic Identity Layer**.
 
 ## Digital Identities Layers
-The idea behind introducing layers in digital identities is to provide a unique way to identify and categorise any digital identity and its related information. Each layer is characterised by different properties and information, which are used and important for the next layer.
+The idea behind introducing layers in digital identities is to provide a unique way to identify and categorise any digital identity and its related information. Each layer is characterised by different properties and information, which are important and used as a starting point for the next layer.
 Here are the three layers:
 - Cryptographic Identity Layer
 - Trusted Identity Layer
@@ -26,7 +26,7 @@ This layer is present when an **Intermediary of Trust** (also referred to as **T
 - **Public Key Infrastructure-based** (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that contain additional information of the trusted party.
 
 For both categories, there are three levels of trust
-- **Autonomous** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
+- **Scoped** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
 - **Standard** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
 - **Qualified (Europe Only)** same as previous, but in this case, the intermediary is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
@@ -37,9 +37,9 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 | Combination | Description |
 | --- | ----------- |
-| Autonomous Anonymous | Keypair self-issued and no info on way to control |
-| Autonomous Machine | Keypair self-issued and direct access control by machine or process  |
-| Autonomous Human | Keypair managed by a device wallet controlled by a human (multi-factor authenticated) |
+| Scoped Anonymous | Keypair bound to scope-issued credential (VC, X509) and no about keypair control |
+| Scoped Machine | Keypair bound to scope-issued credential (VC, X509) and direct access control by machine or process  |
+| Scoped Human | Keypair bound to scope-issued credential (VC, X509) and managed by a device wallet controlled by a human (multi-factor authenticated) |
 | Trusted Machine | Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and fully controlled by a machine or process |
 | Trusted Human | Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated) |
 | eIDAS Trusted Machine | Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and fully controlled by machine or process |
@@ -48,7 +48,15 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 ### Semantic Identity Layer
 
-This layer is where a **trusted digital identity** becomes meaningful and is enriched with information that is useful to interact with it, in a certain scope. The two most used forms of enrichment are:
+This layer is where a **trusted digital identity** becomes meaningful in a certain **scope** and is enriched with information used to interact with it. A semantic layer is basically defined by the following elements:
+- The scope trust anchor -> who is defining the scope
+- The scope semantic model -> which information is useful to define the scope and the actors participating in it
+- The trusted issuers -> who is entitled to issue and revoke the above information to other trusted digital identities
+- The Technical details 
+
+
+
+The two most used forms of enrichment are:
 - Using Attributes in conjunction with PKI-based trusted identities
 - Using Verifiable Credentials in conjunction with SSI-based trusted identities
 
