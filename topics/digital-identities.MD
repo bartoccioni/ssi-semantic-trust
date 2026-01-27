@@ -52,11 +52,42 @@ This layer is where a **trusted digital identity** becomes meaningful in a certa
 - The scope trust anchor -> who is defining the scope
 - The scope semantic model -> which information is useful to define the scope and the actors participating in it
 - The trusted issuers -> who is entitled to issue and revoke the above information to other trusted digital identities
-- The Technical details 
+- The technical info on semantic information -> how and if one semantic information can be issued/verified in real-time
+Below are the most common/spread scopes and their description
+
+#### Organisation 
+This scope is defined by an organisation that onboards its employees and manages their Identity, Roles, Permissions, etc to be used internally within the organisation.
+
+| Scope element | Description |
+| --- | ----------- |
+| Trust Anchor | The organisation itself |
+| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
+| Trusted Issuers | The trusted digital identities controlled by the organisation |
+| Technical Info | SSI-Based Strongly Bound |
 
 
+#### Generic Ecosystem
+This scope is 
 
-The two most used forms of enrichment are:
+| Scope element | Description |
+| --- | ----------- |
+| Trust Anchor | The organisation itself |
+| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
+| Trusted Issuers | The trusted digital identities controlled by the organisation |
+| Technical Info | SSI-Based Strongly Bound |
+
+#### Dataspace
+This scope is 
+
+| Scope element | Description |
+| --- | ----------- |
+| Trust Anchor | The organisation itself |
+| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
+| Trusted Issuers | The trusted digital identities controlled by the organisation |
+| Technical Info | SSI-Based Strongly Bound |
+
+
+The two most used forms of information enrichment are:
 - Using Attributes in conjunction with PKI-based trusted identities
 - Using Verifiable Credentials in conjunction with SSI-based trusted identities
 
