@@ -65,9 +65,9 @@ This scope is defined by an organisation that onboards its employees and manages
 | Scope element | Description |
 | --- | ----------- |
 | Trust Anchor | The organisation itself |
-| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
-| Trusted Issuers | The trusted digital identities controlled by the organisation |
-| Technical Info | SSI-Based Strongly Bound + Bitstring Status List|
+| Semantic Model | Identity information, Hierarchy information, Roles, Permissions (defined using Verifiable Credentials) |
+| Trusted Issuers | The trusted digital identities controlled by the organisation that are entitled to issue VC containing semantic information |
+| Technical Info | SSI-Based Strongly Bound + Bitstring Status List |
 
 
 #### Generic Ecosystem
@@ -76,8 +76,8 @@ This scope is defined by an ecosystem governance that onboards members, assignin
 | Scope element | Description |
 | --- | ----------- |
 | Trust Anchor | The Ecosystem Governace |
-| Semantic Model | Identity information, Roles, Permissions |
-| Trusted Issuers | The trusted digital identities controlled by the governance |
+| Semantic Model | Identity information, Roles, Permissions (defined using Verifiable Credentials) |
+| Trusted Issuers | The trusted digital identities controlled by the governance that are entitled to issue VC containing semantic information |
 | Technical Info | SSI-Based Strongly Bound + Distributed Ledger based trusted list |
 
 #### Simpl-Open Dataspace
@@ -87,7 +87,7 @@ This scope is defined by a data space Governance Authority that wants to define 
 | --- | ----------- |
 | Trust Anchor | The data space governance authority |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Identity Attributes) |
-| Trusted Issuers | The trusted digital identity deployed in the data space governance authority Agent  |
+| Trusted Issuers | The trusted digital identities deployed in the data space governance authority Agent that are entitled to issue signed proof containing semantic information |
 | Technical Info | PKI-Based + Security Attributes Provider |
 
 #### EDC Dataspace
@@ -97,7 +97,7 @@ This scope is defined by a data space Governance Authority that wants to define 
 | --- | ----------- |
 | Trust Anchor | The data space governance authority |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Verifiable Credentials) |
-| Trusted Issuers | The trusted digital identity controlled by the data space governance authority  |
+| Trusted Issuers | The trusted digital identities controlled by the data space governance authority that are entitled to issue VC containing semantic information  |
 | Technical Info | SSI-Based + Bitstring Status List |
 
 
