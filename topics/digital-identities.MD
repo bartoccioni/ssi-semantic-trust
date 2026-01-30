@@ -21,10 +21,10 @@ Surely, further combinations of controller/access are possible, but they do not 
 
 ### Trusted Identity Layer
 
-This layer is present when an **Intermediary of Trust** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of intermediaries of trust that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
+This layer is present when an **Trust Intermediary** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trust intermediaries that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
 
 - **Self-Sovereign Identity-based** (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the intermediary itself in a privacy-preserving way.
-  - **Standard** - This kind of intermediary trusts the DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the intermediary cannot trust a specific cryptographic identity.
+  - **Standard** - This kind of intermediary trusts the "full" DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the intermediary cannot trust a specific cryptographic identity.
   - **Strongly Bound** - This kind of intermediary trusts ONLY a specific cryptographic identity (its public key) contained in the DID document.
 - **Public Key Infrastructure-based** (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that contain additional information of the trusted party.
 
