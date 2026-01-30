@@ -8,7 +8,7 @@ Here are the three layers:
 - Trusted Identity Layer
 - Semantic Identity Layer
 
-![Layers](/media/digital-identity-layers.png)
+![Layers](/media/digital-identity-layers.jpg)
 
 ### Cryptographic Identity Layer
 
