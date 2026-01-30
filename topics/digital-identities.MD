@@ -10,6 +10,7 @@ Here are the three layers:
 
 ![Layers](/media/digital-identity-layers.jpg)
 
+
 ### Cryptographic Identity Layer
 
 This layer is always present and topmost, representing the foundation for all the other layers, and provides information regarding the keypair and its controller of the *private key* and how control is performed:
@@ -50,11 +51,12 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 ### Semantic Identity Layer
 
-This layer is where a **trusted digital identity** becomes meaningful in a certain **scope** and is enriched with information used to interact with it. A semantic layer is basically defined by the following elements:
-- The scope trust anchor -> who is defining the scope
-- The scope semantic model -> which information is useful to define the scope and the actors participating in it
+This layer is where a **trusted digital identity** is enriched with semantic information used to interact with it by a **Semantic Intermediary** in a certain **Scope**, that is basically defined by the following elements:
+- The Trust Anchor or controller -> who is defining the scope
+- The semantic model -> which information is useful to define the scope and the actors participating in it
 - The trusted issuers -> who is entitled to issue and revoke the above information to other trusted digital identities
-- The technical info on semantic information -> how and if one semantic information can be issued/verified in real-time
+- The technical details -> how and if one semantic information can be issued/verified in real-time
+
 Below are the most common/spread scopes and their description
 
 #### Organisation 
@@ -65,28 +67,38 @@ This scope is defined by an organisation that onboards its employees and manages
 | Trust Anchor | The organisation itself |
 | Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
 | Trusted Issuers | The trusted digital identities controlled by the organisation |
-| Technical Info | SSI-Based Strongly Bound |
+| Technical Info | SSI-Based Strongly Bound + Bitstring Status List|
 
 
 #### Generic Ecosystem
-This scope is 
+This scope is defined by an ecosystem governance that onboards members, assigning them specific **Ecosystem Roles and Identity Attributes** used to establish which kind of interactions a member can perform with the other members in the ecosystem.
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The organisation itself |
-| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
-| Trusted Issuers | The trusted digital identities controlled by the organisation |
-| Technical Info | SSI-Based Strongly Bound |
+| Trust Anchor | The Ecosystem Governace |
+| Semantic Model | Identity information, Roles, Permissions |
+| Trusted Issuers | The trusted digital identities controlled by the governance |
+| Technical Info | SSI-Based Strongly Bound + Distributed Ledger based trusted list |
 
-#### Dataspace
-This scope is 
+#### Simpl-Open Dataspace
+This scope is defined by a data space Governance Authority that wants to define and "run" a data space using the Simpl-Open middleware
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The organisation itself |
-| Semantic Model | Identity information, Hierarchy information, Roles, Permissions |
-| Trusted Issuers | The trusted digital identities controlled by the organisation |
-| Technical Info | SSI-Based Strongly Bound |
+| Trust Anchor | The data space governance authority |
+| Semantic Model | Identity information, Roles, Rights, Permissions (defined using Identity Attributes) |
+| Trusted Issuers | The trusted digital identity deployed in the data space governance authority Agent  |
+| Technical Info | PKI-Based + Security Attributes Provider |
+
+#### EDC Dataspace
+This scope is defined by a data space Governance Authority that wants to define and "run" a data space using the EDC (Eclispe Data space Component) platform
+
+| Scope element | Description |
+| --- | ----------- |
+| Trust Anchor | The data space governance authority |
+| Semantic Model | Identity information, Roles, Rights, Permissions (defined using Verifiable Credentials) |
+| Trusted Issuers | The trusted digital identity controlled by the data space governance authority  |
+| Technical Info | SSI-Based + Bitstring Status List |
 
 
 The two most used forms of information enrichment are:
