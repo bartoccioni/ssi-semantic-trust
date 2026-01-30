@@ -8,6 +8,8 @@ Here are the three layers:
 - Trusted Identity Layer
 - Semantic Identity Layer
 
+![Layers](/media/digital-identity-layers.png)
+
 ### Cryptographic Identity Layer
 
 This layer is always present and topmost, representing the foundation for all the other layers, and provides information regarding the keypair and its controller of the *private key* and how control is performed:
