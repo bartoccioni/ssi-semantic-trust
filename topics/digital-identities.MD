@@ -17,6 +17,7 @@ This layer is always present and topmost, representing the foundation for all th
 - **Anonymous** - no way to identify whether a human or a machine is the controller
 - **Human controlled** - the controller is a human and the private key is **Hardware Protected** on a human-controlled device (or on a remote device + multifactor auth device)
 - **Machine controlled** - the controller is a machine/service/device and has **Direct Access**  to the private key (that can be copied/stolen).
+
 Surely, further combinations of controller/access are possible, but they do not really bring any value in identifying the controller
 
 ### Trusted Identity Layer
