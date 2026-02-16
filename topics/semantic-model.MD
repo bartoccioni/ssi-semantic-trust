@@ -122,50 +122,6 @@ Note that the `gx:holder` property is a did:key referencing a keypair owned by t
  <!-- in this example we can see more fields than those explained above - are they necessary?something more should be explained? -->
 
 
-```json linenums="1" title="party_credential.json" hl_lines="4 11 17"
-
-{
-  "@context": [
-    "https://www.w3.org/ns/credentials/v2",
-    "https://w3id.org/gaia-x/development#"
-  ],
-  "id": "did:web:did.actor:alice:credentials:private#1222331234",
-  "type": ["VerifiableCredential"],
-  "issuer": "did:web:did.actor:alice",
-  "validFrom": "2023-08-28T23:00:00Z",
-  "credentialSubject": {
-    "id": "did:key:z4MXj1wBzi9jUstyPMS4jQqB6KdJaiatPkAtVtGc6bQEQEEsKTic4G7Rou3iBf9vPmT5dbkm9qsZsuVNjq8HCuW1w24nhBFGkRE4cd2Uf2tfrB3N7h4mnyPp1BF3ZttHTYv3DLUPi1zMdkULiow3M1GfXkoC6DoxDUm1jmN6GBj22SjVsr6dxezRVQc7aj9TxE7JLbMH1wh5X3kA58H3DFW8rnYMakFGbca5CB2Jf6CnGQZmL7o5uJAdTwXfy2iiiyPxXEGerMhHwhjTA1mKYobyk2CpeEcmvynADfNZ5MBvcCS7m3XkFCMNUYBS9NQ3fze6vMSUPsNa6GVYmKx2x6JrdEjCk3qRMMmyjnjCMfR4pXbRMZa3i",
-    "type": "gx:NaturalPersonPartyCredential",
-    "odrl:hasPolicy": [],
-    "gx:holder": "did:key:z4MXj1wBzi9jUstyPMS4jQqB6KdJaiatPkAtVtGc6bQEQEEsKTic4G7Rou3iBf9vPmT5dbkm9qsZsuVNjq8HCuW1w24nhBFGkRE4cd2Uf2tfrB3N7h4mnyPp1BF3ZttHTYv3DLUPi1zMdkULiow3M1GfXkoC6DoxDUm1jmN6GBj22SjVsr6dxezRVQc7aj9TxE7JLbMH1wh5X3kA58H3DFW8rnYMakFGbca5CB2Jf6CnGQZmL7o5uJAdTwXfy2iiiyPxXEGerMhHwhjTA1mKYobyk2CpeEcmvynADfNZ5MBvcCS7m3XkFCMNUYBS9NQ3fze6vMSUPsNa6GVYmKx2x6JrdEjCk3qRMMmyjnjCMfR4pXbRMZa3i",
-    "gx:identityAttributes": ["IdAttributeOne","IdAttributeTwo"],
-    "gx:identityRoles": ["IdRoleOne","IdRoleTwo"],
-    "gx:givenName": "John",
-    "gx:surname": "Doe"
-  },
-  "credentialStatus": [{
-    "id": "https://did.actor/alice/credentials/status/3#94567",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "revocation",
-    "statusListIndex": "94567",
-    "statusListCredential": "https://did.actor/alice/credentials/status/3"
-  },{
-    "id": "https://did.actor/alice/credentials/status/4#23452",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "suspension",
-    "statusListIndex": "23452",
-    "statusListCredential": "https://did.actor/alice/credentials/status/4"
-  }],
-  "proof": {
-    "type": "JsonWebSignature2020",
-    "created": "2023-08-28T13:25:35.827Z",
-    "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:web:did.actor:alice#JWK2020",
-    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..Sq5VJHCFuIP-cC86EknRnB91WQxNI5X4QtI0mMR3Xzl8VY5bYfOAtpEsejYeDUbi3Oed0VwQBRCqd11HL7NFF-KH02D9I97nHBftBaXo8e0uWQTRk6TA8xq9oQRuNdnm15eR2zudOzKlH4ArXcBo-hUxUH6EH7YimT0Uu5NbsofN-5C2ovksogbugl-NkW3MKrGkAYzsyaEcgh-vSiRwSl4vwE55sDkn16QgMtsccwo9PR0kzECHp8KQZTM3Nwnv4jNN-F3zP-3Vn0B-cm-UgHPz1RYX6uKrc3A4TlJvk9rxQNfLbNot8ZaQBPoLMnd98bV6giNaGIbekVOUuBxUKg"
-  }  
-}
-```
-
 
 ### Public Party Credential
 
@@ -273,7 +229,7 @@ Here is an example of how CredentialSignature can be used:
   "validFrom": "2023-07-28T12:31:49.074Z",
   "validUntil": "2023-10-26T12:31:49.074Z",
   "credentialSubject": {
-    "type": "gx:dataUsageAgreement",
+    "type": "dataUsageContract",
     "id": "https://provider.com/data-usage-contract.654321",
     "digestSRI": "sha384-lHKDHh0msc6pRx8PhDOMkNtSI8bOfsp4giNbUrw71nXXLf13nTqNJoRp3Nx+ArVK"
   },
@@ -285,34 +241,5 @@ Here is an example of how CredentialSignature can be used:
     "statusListCredential": "https://consumer.com/credentials/status/1"
   }
 }
-```
-
-```json
-{
-  "@context": [
-    "https://www.w3.org/ns/credentials/v2",
-    "https://w3id.org/gaia-x/development#"
-  ],
-  "type": [
-    "VerifiableCredential"
-  ],
-  "id": "https://provider.com/data-usage-contract-signatures.987",
-  "issuer": "did:web:provider.com",
-  "validFrom": "2023-07-25T10:31:49.074Z",
-  "validUntil": "2023-10-25T10:31:49.074Z",
-  "credentialSubject": {
-    "type": "gx:dataUsageAgreement",
-    "id": "https://provider.com/data-usage-contract.654321",
-    "digestSRI": "sha384-lHKDHh0msc6pRx8PhDOMkNtSI8bOfsp4giNbUrw71nXXLf13nTqNJoRp3Nx+ArVK"
-  },
-  "credentialStatus": {
-    "id": "https://provider.com/status/3#125221",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "revocation",
-    "statusListIndex": "125221",
-    "statusListCredential": "https://provider.com/credentials/status/3"
-  }
-}
-
 ```
 
