@@ -1,6 +1,12 @@
 # Semantic Model
 The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used implement almost any **Trust Scope** Use Case. 
 
+## Digital Identity
+
+The main idea behind this entity is to define and classify actors (or parties) involved in the scope and is defined using with the same approach and information described in the section [Digital Identities](digital-identities.MD).
+
+The **DigitalIdentityCredential** has the purpose of describing the "kind" of party behind a key pair (a Cryptographic Digital Identity), enriching the standard DID Controller (that by design is **Anonymous** and privacy-preserving) with information that is guaranteed by the **Trust Intermediary**
+
 ## Trust Scope
 
 The Trust Scope has the purpose of providing a trustworthy representation of all meaningful information for a specific scope. This credential enables the usage of Party Credentials, described later in this chapter, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, by easing the use of external Trust Service Providers.
@@ -8,13 +14,11 @@ The Trust Scope has the purpose of providing a trustworthy representation of all
 The **TrustScopeCredential** mainly defines:
 
 - The **Scope** within which the Trust Service Provider is accredited (within which the issued credentials are considered valid).  
-- The **TrustedIssuers** <!-- Is there a reason why not to name it TrustServiceProvider? --> entitled to issue **Credentials** in the above **Scope**
+- The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Trusted List** used to check DIDs issued by the Trust Service Provider.
+- The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
 
 The `Trust Scope Credential` is defined by the following attributes:
-
-<!-- are there any other attributes to be considered?where do we see how long the TA Credential is valid?Maybe the revocation mechanism has to be defined better --> 
 
 | Attribute                | Type.Value/Voc    | Mandatory | Comment                                                                                                                                                                                                                                  |
 |--------------------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -24,25 +28,25 @@ The `Trust Scope Credential` is defined by the following attributes:
 | `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors                                                                                                                                            | 
 | `trustedListEndpoint` | URI               | No        | The address of the above trusted list                                                                                                                                                                                                    | 
 
-The **KindOfTrustedList** type defines the list of the identified implementations of Trusted Lists:
+The **KindOfTrustedList** type defines the list of identified implementations of Trusted Lists:
 
-- Gaia-X Trusted List Generic REST API Specification
-- Gaia-X IPFS (with ETSI TS 119 612 format)
+- Generic Trusted List REST API Specification
+- LOTL List Of Trusted Lists with ETSI TS 119 612 format (eIDAS Qualified Trusted Service Providers)
 - TRAIN
 - EBSI
 - (other possible implementations)
 
 
 **Important Note**
-The *Gaia-X Trusted List Generic REST API Specification* is meant to be a simple API contract that for a given DID can return "true" if it is still valid. This will be very useful to enable integration of any custom trusted list not included in the defined list.
+The *Generic Trusted List REST API Specification* is meant to be a simple API contract that, for a given DID can return "true" if it is still valid. This will be very useful to enable the integration of any custom trusted list not included in the defined list.
 
 
 ### Trust Scope Credential specialisation examples
 
 Several specialisations of the **TrustScopeCredential** can be easily defined, for example:
 
-#### **Organization Trust Scope** 
-This specialisation is a self-issued credential that entitles the issuing organization to define its *Roles/Identity Attributes* to be used by identify and authorise its parties:
+#### **Organisation Trust Scope** 
+This specialisation is a self-issued credential that entitles the issuing organisation to define its *Roles/Identity Attributes* to be used by identify and authorise its parties:
 
    - **scope** - *Organization Credential Management* (OCM).
    - **trusted issuers** - the organisation itself.
@@ -54,7 +58,7 @@ This credential is issued by  Gaia-X and entitles an organisation to issue attes
 
    - **scope** - issue attestations used to attest Gaia-X Compliance.
    - **trusted issuers** - the organisation accredited by Gaia-X to issue attestations in the defined scope.
-   - **vocabularies** - defines the semantic applicable to issue attestations in the defined scope.
+   - **vocabularies** - defines the semantics applicable to issue attestations in the defined scope.
    - **trusted list** - to assign and revoke attestations issued to Gaia-X Providers. Trust Anchor Credential specialisation examples
 
 #### **Ecosystem Trust Scope**
@@ -114,14 +118,12 @@ This credential contains Name, Surname, identityAttributes, Roles, etc. and MUST
 
 #### Private Party Credential Example
 
-The following **NaturalPersonPartyCredential** example represents the scenario where the Participant **did:web:did.actor:alice** is issuing a credential that <!-- self? --> asserts several claims (givenName, surname, idRoles etc).
+The following **NaturalPersonPartyCredential** example represents the scenario where the Participant **did:web:did.actor:alice** is issuing a credential that asserts several claims (givenName, surname, idRoles etc).
 This Credential is not published (the **id** is not public) and MUST be stored in the wallet of the holder. 
 
-Note that the `gx:holder` property is a did:key referencing a keypair owned by the **Holder** that identifies the public key of the target wallet.
+Note that the `holder` property is a did:key referencing a keypair owned by the **Holder** that identifies the public key of the target wallet.
 
- <!-- in this example we can see more fields than those explained above - are they necessary?something more should be explained? -->
-
-
+ 
 
 ### Public Party Credential
 
@@ -136,7 +138,7 @@ Here, some of the possible Party Credential specialisations are defined.
 
 #### Natural Person Party Credential
 
-This credential is issued by a Participant to entitle a natural person (usually one of his users/employees) to interact with other Relying Parties belonging to other Participants.
+This credential is issued by a Participant to entitle a natural person (usually one of their users/employees) to interact with other Relying Parties belonging to other Participants.
 
 This is how `Natural Person Party Credential` will be defined by the following attributes in addition to Party Credential attributes:
 
