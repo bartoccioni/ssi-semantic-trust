@@ -5,9 +5,13 @@ The semantic model is a set of base entities expressed using the [Verifiable Cre
 
 The main idea behind this entity is to define and classify all the **Actors** (or parties) involved in a selected **Scope**, following the same approach and information described in the section [Digital Identities](digital-identities.MD).
 
-The **DigitalIdentityCredential** has the purpose of describing the **kind** of party behind a Cryptographic Digital Identity, enriching the standard information of a DID Controller (that by design is **Anonymous** and privacy-preserving) with the information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential that mainly defines:
+The **DigitalIdentityCredential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
 
-- 
+- The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer)
+- The **TrustIssuerType** 
+- The **PublicKeyId** in the form of a resolvable link to the digital identity's verificationMethod used to uniquely resolve **ONE and ONLY** key pair of the possible list contained in the DID.
+- The **PublicKeyDigest** as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession.
+
 
 ## Trust Scope
 
