@@ -1,11 +1,11 @@
 # Semantic Model
-The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used implement almost any **Trust Scope** Use Case. 
+The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. 
 
-## Digital Identity
+## Trust Digital Identity
 
 The main idea behind this entity is to define and classify all the **Actors** (or parties) involved in a selected **Scope**, following the same approach and information described in the section [Digital Identities](digital-identities.MD).
 
-The **Digital Identity Credential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
+The **Trusted Digital Identity Credential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
 
 - The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer) defined as follow:
    - Anonymous 
@@ -18,15 +18,31 @@ The **Digital Identity Credential** has the purpose of describing the **kind** o
 - The **PublicKeyId** in the form of a resolvable link to the digital identity's verificationMethod used to uniquely resolve **ONE and ONLY** key pair of the possible list contained in the DID.
 - The **PublicKeyDigest** as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession.
 
-The `DigitalIdentityCredential` is defined by the following attributes:
+The `TrustedDigitalIdentity` credential is defined by the following attributes:
 
-| Attribute                | Type.Value/Voc    | Mandatory | Comment                                                                                                                                                                                                                                  |
-|--------------------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `controller`    | String            | No        | A description of the scope of the Trust Service Provider                                                                                                                                                                                           |
-| `trustIssuers`         | DID[]             | Yes       | A list of resolvable link(s) to the issuer verificationMethod to be used to uniquely identify ONE and ONLY key pair                                                                                                                            |
-| `vocabularies`        | URI[]             | No        | A list of URIs pointing to the vocabularies/schemas (SHACL) semantically describing the Trust Service Provider's scope <!-- could we be clearer here?reference to the semantic applicable to issue attestations in the defined scope would be clearer? --> |
-| `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors                                                                                                                                            | 
-| `trustedListEndpoint` | URI               | No        | The address of the above trusted list                                                                                                                                                                                                    | 
+| Attribute       | Type.Value/Voc    | Mandatory | Comment                         |
+|-----------------|-------------------|-----------|---------------------------------|
+| `controller`    | ControllerKind    | Yes       | The kind of controller of the Cryptographinc Digital Identity |
+| `level`         | TrustLevelType    | Yes       | The self-declared level of trust of the **Trust Intermediary** that is also the issuer of this credential |
+| `publicKeyId`   | URI               | Yes       | The resolvable link to the Cryptographic Digital Identity verificationMethod to be used to uniquely identify ONE and ONLY key pair |
+| `publicKeyDigest` | KindOfTrustedList | No        | The optional digest (hash) of the above resolved public key, that is used to **Strongly Bind** it with this Credential. This property is used to enable the Proof of Possession  | 
+
+The `ControllerKind` type defines the list of identified controllers :
+
+| Value                | Description 
+|----------------------|--------------------------------------------------------------------------------|
+| `Anonymous`          | No info available or disclosable |
+| `Human`              |  The control is performed by a Human (requires human acknowledgement every signature) |
+| `Machine`            | The control is performed by a Machine ( process, application, service, agent, etc.)  |
+
+The `TrustLevelType` defines the list of categories of trust of the **Trust Intermediary** :
+
+| Value             | Description 
+|-------------------|--------------------------------------------------------------------------------|
+| `Scoped`          | The **Trust Intermediary** is valid in a self-defined scope (e.g. data space, ecosystem, organisation, etc). |
+| `Standard`        | The **Trust Intermediary** is a Trust Service Provider belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.) 
+| `Qualified`       | The **Trust Intermediary** is a Qualified Trust Service Provider belonging to the eIDAS Framework   |
+
 
 ## Trust Scope
 
@@ -39,15 +55,16 @@ The **Trust Scope Credential** mainly defines:
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
 - The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
 
-The `TrustScopeCredential` is defined by the following attributes:
+The `TrustScope` credential is defined by the following attributes:
 
-| Attribute                | Type.Value/Voc    | Mandatory | Comment                                                                                                                                                                                                                                  |
-|--------------------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `scopeDescription`    | String            | No        | A description of the scope of the Trust Service Provider                                                                                                                                                                                           |
-| `trustIssuers`         | DID[]             | Yes       | A list of resolvable link(s) to the issuer verificationMethod to be used to uniquely identify ONE and ONLY key pair                                                                                                                            |
-| `vocabularies`        | URI[]             | No        | A list of URIs pointing to the vocabularies/schemas (SHACL) semantically describing the Trust Service Provider's scope <!-- could we be clearer here?reference to the semantic applicable to issue attestations in the defined scope would be clearer? --> |
-| `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors                                                                                                                                            | 
-| `trustedListEndpoint` | URI               | No        | The address of the above trusted list                                                                                                                                                                                                    | 
+| Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
+|--------------------------|-------------------|-----------|-----------------------------------------------------|
+| `scopeDescription`    | String            | No        | A description of the scope of the Trust Service Provider |
+| `trustIssuers`        | TrustedDigitalIdentity[] | Yes       | A list of **Strongly Bound TrustedDigitalIdentity** identifying the Issuer(s) of the Scope |
+| `vocabularies`        | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
+| `schemas`             | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
+| `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors | 
+| `trustedListEndpoint` | URI               | No        | The address of the above trusted list | 
 
 The `KindOfTrustedList` type defines the list of identified implementations of Trusted Lists:
 
@@ -58,14 +75,13 @@ The `KindOfTrustedList` type defines the list of identified implementations of T
 | `TRAIN` | Trusted list of trust anchors using DNS(SEC) |
 | `EBSI` | European Blockchain Services Infrastructure (EBSI) |
 | `OTHER` | other possible implementations |
-|----------------------|--------------------------------------------------------------------------------|
 
 
 **Important Note**
 The *Generic Trusted List REST API Specification* is meant to be a simple API contract that, for a given DID can return "true" if it is still valid. This will be very useful to enable the integration of any custom trusted list not included in the defined list.
 
 
-### Trust Scope Credential specialisation examples
+### TrustScope credential specialisation examples
 
 Several specialisations of the **TrustScopeCredential** can be easily defined, for example:
 
@@ -119,19 +135,19 @@ In all the above examples, the *trusting* relationship can be concretely impleme
 The Party Credential is based upon the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) and is the basis for all IAA Parties such as **Natural Persons** , **Services**, **Legal Persons**, etc. 
 The general purpose party credential is intended to be extended into specialized Credentials (see **Party Credential Specializations**) 
 
-The `Party Credential` is defined by the following attributes:
+The `PartyCredential` is defined by the following attributes:
 
-| Attribute                  | Type.Value/Voc   | Mandatory                                                | Comment                                                                                                                                        |
-|----------------------------|------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `holder`                | DID              | Yes                                                      | A resolvable link to the holder verificationMethod to be used to uniquely identify ONE and ONLY key pair                                       |
-| `hasPolicy`           | policy[] in ODRL | No                                                       | A list of `policy` expressed using ODRL                                                                                                        |
-| `identityAttributes`    | String[]         | No                                                       | A list of literals representing Identity Attributes to be used in a ABAC context                                                               | 
-| `identityRoles`         | String[]         | No                                                       | A list of literals representing Identity Roles to be used in a RBAC context                                                                    | 
-| `parentPartyCredential` | URI              | Yes if delegated by another existing Party Credential | A resolvable link to the parent Party Credential where the gx:holder MUST be equal to the signer(issuer verificationMethod) of this credential | 
+| Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
+|-------------------------|------------------|-----------|---------------------------------------------------|
+| `holder`                | TrustedDigitalIdentity | Yes | A resolavable link to a **Strongly Bound TrustedDigitalIdentity** identifying the Holder who can do the **Proof of Possesion** of this credential |
+| `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL |
+| `identityAttributes`    | String[]         | No | A list of literals representing Identity Attributes to be used in a Attribute Based Access Control (ABAC) context | 
+| `identityRoles`         | String[]         | No | A list of literals representing Identity Roles to be used in a Role-Based Access Control (RBAC) context | 
+| `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **signer** of this credential (same public key and digest) | 
 
 **VERY IMPORTANT NOTE**
 
-The **credentialSubject.id** MUST identify the **DID Document** that contains the **verificationMethod** (keypair)  referenced by `gx:holder` property that *belong to/is controlled by* the **Credential Holder**.
+The **credentialSubject.id** MUST identify the **DID Document** that is referenced by the `holder` property that *belongs to/is controlled by* the **Credential Holder**.
 With this solution, the PartyCredential VC can be either publicly published in case it contains no sensitive data or kept private in case it contains PII - Personal Identifiable Information.
 
 ### Private Party Credential
@@ -175,7 +191,7 @@ This is how `Natural Person Party Credential` will be defined by the following a
 
 #### Legal Person Party Credential
 
-This credential is issued by a Legal Person Participant to entitle another legal person (usually one of his users <!-- could we perhaps use a better word than users? -->  ) to interact with other Relying Parties belonging to other Participants on its behalf.
+This credential is issued by a Legal Person Participant to entitle another legal person (usually one of its users) to interact with other Relying Parties belonging to other Participants on its behalf.
 
 This is how `Legal Person Party Credential` will be defined by the following attributes in addition to Party Credential attributes:
 
@@ -195,9 +211,9 @@ This is how `Service Party Credential` will be defined by the following attribut
 
 #### Membership Party Credential
 
-This credential is issued by a LegalParticipant that runs an <!-- we could replace ecosystem by data space --> ecosystem to another Participant in order to attest his Membership status.
+This credential is issued by a Trusted Issuer of a specific Trust scope (Organisation, Ecosystem, Data space, etc) to a Trusted Digital Identiti in order to attest his Membership status.
 
-<!-- to be added attributes specific to the Membership Credential/check with the Lab about our Membership Credential -->
+
 
 
 ## Signature Credential
