@@ -5,7 +5,7 @@ The semantic model is a set of base entities expressed using the [Verifiable Cre
 
 The main idea behind this entity is to define and classify all the **Actors** (or parties) involved in a selected **Scope**, following the same approach and information described in the section [Digital Identities](digital-identities.MD).
 
-The **DigitalIdentityCredential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
+The **Digital Identity Credential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
 
 - The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer) defined as follow:
    - Anonymous 
@@ -18,19 +18,28 @@ The **DigitalIdentityCredential** has the purpose of describing the **kind** of 
 - The **PublicKeyId** in the form of a resolvable link to the digital identity's verificationMethod used to uniquely resolve **ONE and ONLY** key pair of the possible list contained in the DID.
 - The **PublicKeyDigest** as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession.
 
+The `DigitalIdentityCredential` is defined by the following attributes:
+
+| Attribute                | Type.Value/Voc    | Mandatory | Comment                                                                                                                                                                                                                                  |
+|--------------------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `controller`    | String            | No        | A description of the scope of the Trust Service Provider                                                                                                                                                                                           |
+| `trustIssuers`         | DID[]             | Yes       | A list of resolvable link(s) to the issuer verificationMethod to be used to uniquely identify ONE and ONLY key pair                                                                                                                            |
+| `vocabularies`        | URI[]             | No        | A list of URIs pointing to the vocabularies/schemas (SHACL) semantically describing the Trust Service Provider's scope <!-- could we be clearer here?reference to the semantic applicable to issue attestations in the defined scope would be clearer? --> |
+| `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors                                                                                                                                            | 
+| `trustedListEndpoint` | URI               | No        | The address of the above trusted list                                                                                                                                                                                                    | 
 
 ## Trust Scope
 
 The Trust Scope has the purpose of providing a trustworthy representation of all meaningful information for a specific scope. This credential enables the usage of Party Credentials, described later in this chapter, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, by easing the use of external Trust Service Providers.
 
-The **TrustScopeCredential** mainly defines:
+The **Trust Scope Credential** mainly defines:
 
 - The **Scope** within which the Trust Service Provider is accredited (within which the issued credentials are considered valid).  
 - The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
 - The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
 
-The `Trust Scope Credential` is defined by the following attributes:
+The `TrustScopeCredential` is defined by the following attributes:
 
 | Attribute                | Type.Value/Voc    | Mandatory | Comment                                                                                                                                                                                                                                  |
 |--------------------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -40,13 +49,16 @@ The `Trust Scope Credential` is defined by the following attributes:
 | `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors                                                                                                                                            | 
 | `trustedListEndpoint` | URI               | No        | The address of the above trusted list                                                                                                                                                                                                    | 
 
-The **KindOfTrustedList** type defines the list of identified implementations of Trusted Lists:
+The `KindOfTrustedList` type defines the list of identified implementations of Trusted Lists:
 
-- Generic Trusted List REST API Specification
-- LOTL List Of Trusted Lists with ETSI TS 119 612 format (eIDAS Qualified Trusted Service Providers)
-- TRAIN
-- EBSI
-- (other possible implementations)
+| Value                | Description 
+|----------------------|--------------------------------------------------------------------------------|
+| `API`                | Generic Trusted List REST API Specification |
+| `LOTLeIDAS` |  List Of Trusted Lists with ETSI TS 119 612 format (eIDAS Qualified Trusted Service Providers) |
+| `TRAIN` | Trusted list of trust anchors using DNS(SEC) |
+| `EBSI` | European Blockchain Services Infrastructure (EBSI) |
+| `OTHER` | other possible implementations |
+|----------------------|--------------------------------------------------------------------------------|
 
 
 **Important Note**
