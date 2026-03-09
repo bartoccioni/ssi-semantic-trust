@@ -7,8 +7,14 @@ The main idea behind this entity is to define and classify all the **Actors** (o
 
 The **DigitalIdentityCredential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
 
-- The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer)
-- The **TrustIssuerType** 
+- The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer) defined as follow:
+   - Anonymous 
+   - Human-controlled 
+   - Machine-controlled 
+- The **TrustLevel** of the **Trust Intermediary** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section:
+   - Scoped
+   - Standard
+   - Qualified
 - The **PublicKeyId** in the form of a resolvable link to the digital identity's verificationMethod used to uniquely resolve **ONE and ONLY** key pair of the possible list contained in the DID.
 - The **PublicKeyDigest** as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession.
 
