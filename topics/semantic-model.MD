@@ -5,13 +5,13 @@ The semantic model is a set of base entities expressed using the [Verifiable Cre
 
 The main idea behind this entity is to define and classify all the **Actors** (or parties) involved in a selected **Scope**, following the same approach and information described in the section [Digital Identities](digital-identities.MD).
 
-The **Trusted Digital Identity Credential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trust Intermediary** that is also the issuer of this type of credential:
+The **Trusted Digital Identity Credential** has the purpose of describing the **kind** of party behind a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer), enriching the standard information of an SSI Holder with the following information guaranteed by a **Trusted Identity Provider** that is also the issuer of this type of credential:
 
 - The **ControllerKind** of the [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer) defined as follow:
    - Anonymous 
    - Human-controlled 
    - Machine-controlled 
-- The **TrustLevel** of the **Trust Intermediary** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section:
+- The **TrustLevel** of the **Trusted Identity Provider** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section:
    - Scoped
    - Standard
    - Qualified
@@ -23,7 +23,7 @@ The `TrustedDigitalIdentity` credential is defined by the following attributes:
 | Attribute       | Type.Value/Voc    | Mandatory | Comment                         |
 |-----------------|-------------------|-----------|---------------------------------|
 | `controller`    | ControllerKind    | Yes       | The kind of controller of the Cryptographinc Digital Identity |
-| `level`         | TrustLevelType    | Yes       | The self-declared level of trust of the **Trust Intermediary** that is also the issuer of this credential |
+| `level`         | TrustLevelType    | Yes       | The self-declared level of trust of the **Trusted Identity Provider** that is also the issuer of this credential |
 | `publicKeyId`   | URI               | Yes       | The resolvable link to the Cryptographic Digital Identity verificationMethod to be used to uniquely identify ONE and ONLY key pair |
 | `publicKeyDigest` | KindOfTrustedList | No        | The optional digest (hash) of the above resolved public key, that is used to **Strongly Bind** it with this Credential. This property is used to enable the Proof of Possession  | 
 
@@ -35,13 +35,13 @@ The `ControllerKind` type defines the list of identified controllers :
 | `Human`              |  The control is performed by a Human (requires human acknowledgement every signature) |
 | `Machine`            | The control is performed by a Machine ( process, application, service, agent, etc.)  |
 
-The `TrustLevelType` defines the list of categories of trust of the **Trust Intermediary** :
+The `TrustLevelType` defines the list of categories of trust of the **Trusted Identity Provider** :
 
 | Value             | Description 
 |-------------------|--------------------------------------------------------------------------------|
-| `Scoped`          | The **Trust Intermediary** is valid in a self-defined scope (e.g. data space, ecosystem, organisation, etc). |
-| `Standard`        | The **Trust Intermediary** is a Trust Service Provider belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.) 
-| `Qualified`       | The **Trust Intermediary** is a Qualified Trust Service Provider belonging to the eIDAS Framework   |
+| `Scoped`          | Valid in a self-defined scope (e.g. data space, ecosystem, organisation, etc). |
+| `Standard`        | A **Trust Service Provider** belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.) 
+| `Qualified`       | A **Qualified Trust Service Provider** belonging to the eIDAS Framework   |
 
 
 ## Trust Scope
