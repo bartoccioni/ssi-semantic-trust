@@ -22,19 +22,19 @@ Surely, further combinations of controller/access are possible, but they do not 
 
 ### Trusted Identity Layer
 
-This layer is present when an **Trust Intermediary** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trust intermediaries that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
+This layer is present when an **Trusted Identity Provider** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trusted identity providers that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
 
-- **Self-Sovereign Identity-based** (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the intermediary itself in a privacy-preserving way.
-  - **Standard** - This kind of intermediary trusts the "full" DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the intermediary cannot trust a specific cryptographic identity.
-  - **Strongly Bound** - This kind of intermediary trusts ONLY a specific cryptographic identity (its public key) contained in the DID document.
+- **Self-Sovereign Identity-based** (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the provider itself in a privacy-preserving way.
+  - **Standard** - This kind of provider trusts the "full" DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the provider cannot trust a specific cryptographic identity.
+  - **Strongly Bound** - This kind of provider trusts ONLY a specific cryptographic identity (its public key) contained in the DID document.
 - **Public Key Infrastructure-based** (or PKI-based) that relies on a standard PKI stack with a Certificate Authority (CA) that issues and revokes **X509 certificates** that are always bound to the public key of a cryptographic identity, and that contain additional information of the trusted party.
 
 For both categories, there are three levels of trust
-- **Scoped** - This kind of intermediary is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
-- **Standard** This kind of intermediary is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
-- **Qualified (Europe Only)** same as previous, but in this case, the intermediary is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
+- **Scoped** - This kind of provider is self-operated by the subject who wants to provide trust in a certain scope (e.g. a data space governance authority, an ecosystem operator, an organisation, etc).
+- **Standard** This kind of provider is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
+- **Qualified (Europe Only)** same as previous, but in this case, the provider is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
-Note: The two kinds of intermediary can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
+Note: The two kinds of provider can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
 
 #### Cryptographic and Trusted Identity Layers combined
 Here is a list showing the result of the most commonly used combinations of the two Identity Layers used to classify actors :
@@ -52,7 +52,7 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 ### Semantic Identity Layer
 
-This layer is where a **trusted digital identity** is enriched with semantic information used to interact with it by a **Semantic Intermediary** in a certain **Scope**, that is basically defined by the following elements:
+This layer is where a **trusted digital identity** is enriched with semantic information used to interact with it by a **Semantic Identity Provider** in a certain **Scope**, that is basically defined by the following elements:
 - The Trust Anchor or controller -> who is defining the scope
 - The semantic model -> which information is useful to define the scope and the actors participating in it
 - The trusted issuers -> who is entitled to issue and revoke the above information to other trusted digital identities
