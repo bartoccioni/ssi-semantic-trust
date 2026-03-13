@@ -8,9 +8,10 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
 - [Digital Identities](./topics/digital-identities.MD)
 - [SSI Trust Architecture](./topics/ssi-trust-architecture.MD)
 - [Semantic Model of IAA (Identity, Authentication, and Authorisation)](./topics/semantic-model.MD)
-  - Trust Scope
+  - Trusted Digital Identity
+  - Trust Scope and Trust Relation
   - Party and Rights Delegation
-  - Agreement and Assertions(Signatures, Permissions, Consents, etc)
+  - Assertions (Signatures, Permissions, Agreement, Consents, etc)
 - [Semantic Model in action](./topics/semantic-model.MD)
   - Organisation
   - Data Space
