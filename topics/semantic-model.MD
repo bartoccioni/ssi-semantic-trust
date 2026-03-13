@@ -46,11 +46,11 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 
 ## Trust Scope
 
-The Trust Scope has the purpose of providing a trustworthy representation of all meaningful information for a specific scope. This credential enables the usage of Party Credentials, described later in this chapter, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, by easing the use of external Trust Service Providers.
+The Trust Scope has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (the issuer). This credential enables the usage of Party Credentials, described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credetials.
 
-The **Trust Scope Credential** mainly defines:
+The **Trust Scope Credential** issued by the **Trust Scope Owner** mainly defines:
 
-- The **Scope** within which the Trust Service Provider is accredited (within which the issued credentials are considered valid).  
+- The **Scope** within which the TrustedIssuers are accredited (within which the issued credentials are considered valid).  
 - The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
 - The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
@@ -80,6 +80,9 @@ The `KindOfTrustedList` type defines the list of identified implementations of T
 **Important Note**
 The *Generic Trusted List REST API Specification* is meant to be a simple API contract that, for a given DID can return "true" if it is still valid. This will be very useful to enable the integration of any custom trusted list not included in the defined list.
 
+## Trust Relation
+
+The **Trust Relation** entity is both simple and powerful; it represents and defines the will of a certain Trust Scope Owner to **trust** another **Trust Scope** and how this relation is mapped/translated in the semantics of its own Trust Scope
 
 ### Federation using Trust Scope Credentials
 
