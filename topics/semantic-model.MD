@@ -25,7 +25,7 @@ The `TrustedDigitalIdentity` credential is defined by the following attributes:
 | `controller`    | ControllerKind    | Yes       | The kind of controller of the Cryptographinc Digital Identity |
 | `level`         | TrustLevelType    | Yes       | The self-declared level of trust of the **Trusted Identity Provider** that is also the issuer of this credential |
 | `publicKeyId`   | URI               | Yes       | The resolvable link to the Cryptographic Digital Identity verificationMethod to be used to uniquely identify ONE and ONLY key pair |
-| `publicKeyDigest` | KindOfTrustedList | No        | The optional digest (hash) of the above resolved public key, that is used to **Strongly Bind** it with this Credential. This property is used to enable the Proof of Possession  | 
+| `publicKeyDigest` | String | No        | The optional digest (hash) of the above resolved public key, that is used to **Strongly Bind** it with this Credential. This property is used to enable the Proof of Possession issuing Verifiable Presentations | 
 
 The `ControllerKind` type defines the list of identified controllers :
 
@@ -41,12 +41,12 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 |-------------------|--------------------------------------------------------------------------------|
 | `Scoped`          | Valid in a self-defined scope (e.g. data space, ecosystem, organisation, etc). |
 | `Standard`        | A **Trust Service Provider** belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.) 
-| `Qualified`       | A **Qualified Trust Service Provider** belonging to the eIDAS Framework   |
+| `Qualified`       | A **Qualified Trust Service Provider** belonging to the eIDAS Framework |
 
 
 ## Trust Scope
 
-The Trust Scope has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (the issuer). This credential enables the usage of Party Credentials, described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credetials.
+The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credetial), described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
 
 The **Trust Scope Credential** issued by the **Trust Scope Owner** mainly defines:
 
@@ -107,7 +107,7 @@ In all the above examples, the *trusting* relationship can be concretely impleme
 ## Party Credential 
 
 The Party Credential is based upon the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) and is the basis for all IAA Parties such as **Natural Persons** , **Services**, **Legal Persons**, etc. 
-The general-purpose party credential is intended to be extended into specialized Credentials (see **Party Credential Specializations**) 
+The general-purpose party credential is intended to be extended into specialized Credentials (see **Party Credential Specialisations**) 
 
 The `PartyCredential` is defined by the following attributes:
 
