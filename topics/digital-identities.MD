@@ -59,7 +59,7 @@ The two most used forms of information enrichment are:
 - Using Verifiable Credentials in conjunction with SSI-based trusted identities
 
 
-## All layers together in The Scope
+## The Scope - all layers together
 
 Here is what is needed to combine the above layers to define a Scope:
 
