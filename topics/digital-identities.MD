@@ -11,7 +11,7 @@ Here are the three layers:
 ![Layers](/media/digital-identity-layers.jpg)
 
 
-### Cryptographic Identity Layer
+## Cryptographic Identity Layer
 
 This layer is always present and topmost, representing the foundation for all the other layers, and provides information regarding the keypair and its controller of the *private key* and how control is performed:
 - **Anonymous** - no way to identify whether a human or a machine is the controller
@@ -20,7 +20,7 @@ This layer is always present and topmost, representing the foundation for all th
 
 Surely, further combinations of controller/access are possible, but they do not really bring any value in identifying the controller
 
-### Trusted Identity Layer
+## Trusted Identity Layer
 
 This layer is present when a **Trusted Identity Provider** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trusted identity providers that can be selected depending on the scope and the needed level of trust are grouped into two main categories:
 
@@ -36,7 +36,7 @@ For both categories, there are three levels of trust
 
 Note: The two kinds of providers can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
 
-#### Cryptographic and Trusted Identity Layers combined
+### Cryptographic and Trusted Identity Layers combined
 Here is a list showing the result of the most commonly used combinations of the two Identity Layers used to classify actors :
 
 | Combination | Description |
@@ -50,7 +50,7 @@ Here is a list showing the result of the most commonly used combinations of the 
 | eIDAS Trusted Human | Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated) |
 
 
-### Semantic Identity Layer
+## Semantic Identity Layer
 
 This layer is where everything is put together, and the **Scope Owner** trusts one or more **Trusted Identity Provider**, defines the **Semantic Model**, entitles one or more **Semantic Identity Provider** to onboards **Trusted Digital Identities** by enriching them with semantic information, and making them become **Semantic Digital Identities** that can operate as part of the scope.
 
@@ -59,9 +59,9 @@ The two most used forms of information enrichment are:
 - Using Verifiable Credentials in conjunction with SSI-based trusted identities
 
 
-### Semantic Identity Layer Scope description
+## All layers together in The Scope
 
-Here is what is needed to describe a Scope:
+Here is what is needed to combine the above layers to define a Scope:
 
 - Scope Owner -> who is defining the scope
 - Trusted Identity Provider -> who is ensuring that all actors are Trustworthy ( **Trusted Digital Identities**)
