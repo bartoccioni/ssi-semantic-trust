@@ -46,7 +46,7 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 
 ## Trust Scope
 
-The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credetial), described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
+The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credential), described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
 
 The **Trust Scope Credential** issued by the **Trust Scope Owner** mainly defines:
 
