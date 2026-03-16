@@ -52,7 +52,14 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 ### Semantic Identity Layer
 
-This layer is where a **Semantic Identity Provider** defines a **Scope**, trusts one or more **Trusted Identity Provider**s, and finally onboards **Trusted Digital Identities** by enriching them with semantic information, making them become **Semantic Digital Identities** that can operate as part of the scope.
+This layer is where everything is put together, and the **Scope Owner** trusts one or more **Trusted Identity Provider**, defines the **Semantic Model**, entitles one or more **Semantic Identity Provider** to onboards **Trusted Digital Identities** by enriching them with semantic information, and making them become **Semantic Digital Identities** that can operate as part of the scope.
+
+The two most used forms of information enrichment are:
+- Using Attributes in conjunction with PKI-based trusted identities
+- Using Verifiable Credentials in conjunction with SSI-based trusted identities
+
+
+### Semantic Identity Layer Scope description
 
 Here is what is needed to describe a Scope:
 
@@ -67,7 +74,7 @@ Below are the most common/spread scopes and their description
 #### Organisation 
 This scope is defined by an organisation that onboards its employees and manages their Identity, Roles, Permissions, etc to be used internally within the organisation.
 
-| Scope element | Description |
+| Scope element        | Description |
 | --- | ----------- |
 | Scope Owner | The organisation itself |
 | Trusted ID Provider | The organisation itself for both Humans and Machines |
@@ -79,7 +86,7 @@ This scope is defined by an organisation that onboards its employees and manages
 #### Generic Ecosystem
 This scope is defined by an ecosystem governance that onboards members, assigning them specific **Ecosystem Roles and Identity Attributes** used to establish which kind of interactions a member can perform with the other members in the ecosystem.
 
-| Scope element | Description |
+| Scope element        | Description |
 | --- | ----------- |
 | Scope Owner | The Ecosystem Governance |
 | Trusted ID Provider | The Ecosystem Governance itself for both Humans and Machines |
@@ -90,7 +97,7 @@ This scope is defined by an ecosystem governance that onboards members, assignin
 #### Simpl-Open Dataspace
 This scope is defined by a data space Governance Authority that wants to define and "run" a data space using the Simpl-Open middleware
 
-| Scope element | Description |
+| Scope element        | Description |
 | --- | ----------- |
 | Scope Owner | The data space governance authority |
 | Trusted ID Provider | The data space governance itself for Machines and an eIDAS Qualified Trust Service Provider for Humans  |
@@ -101,7 +108,7 @@ This scope is defined by a data space Governance Authority that wants to define 
 #### EDC Dataspace
 This scope is defined by a data space Governance Authority that wants to define and "run" a data space using the EDC (Eclispe Data space Component) platform
 
-| Scope element | Description |
+| Scope element        | Description |
 | --- | ----------- |
 | Scope owner | The data space governance authority |
 | Trusted ID Provider | The data space governance authority itself for both Humans (VC) and Machines (x509) |
@@ -109,8 +116,4 @@ This scope is defined by a data space Governance Authority that wants to define 
 | Trusted Issuers | The trusted digital identities controlled by the data space governance authority that are entitled to issue VC containing semantic information  |
 | Technical Info | SSI-Based + Bitstring Status List |
 
-
-The two most used forms of information enrichment are:
-- Using Attributes in conjunction with PKI-based trusted identities
-- Using Verifiable Credentials in conjunction with SSI-based trusted identities
 
