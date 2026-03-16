@@ -10,12 +10,12 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
   - [Trusted Identity Layer](./topics/digital-identities.MD#trusted-identity-layer)
   - [Semantic Identity Layer](./topics/digital-identities.MD#semantic-identity-layer)
   - [The Scope - all layers together](./topics/digital-identities.MD#the-scope---all-layers-together)
-- [SSI Trust Architecture](./topics/ssi-trust-architecture.MD)
 - [Semantic Model of IAA (Identity, Authentication, and Authorisation)](./topics/semantic-model.MD)
   - Trusted Digital Identity
   - Trust Scope and Trust Relation
   - Party and Rights Delegation
   - Assertions (Signatures, Permissions, Agreement, Consents, etc)
+- [SSI Trust Architecture](./topics/ssi-trust-architecture.MD)
 - [Semantic Model in action](./topics/semantic-model.MD)
   - Organisation
   - Data Space
