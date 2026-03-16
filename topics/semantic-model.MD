@@ -1,7 +1,7 @@
 # Semantic Model
 The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. 
 
-## Trust Digital Identity
+## Trusted Digital Identity
 
 The main idea behind this entity is to define and classify all the **Actors** (or parties) involved in a selected **Scope**, following the same approach and information described in the section [Digital Identities](digital-identities.MD).
 
@@ -43,30 +43,16 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 | `Standard`        | A **Trust Service Provider** belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.) 
 | `Qualified`       | A **Qualified Trust Service Provider** belonging to the eIDAS Framework |
 
-
-## Trust Scope
-
-The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credential), described later in this section, by defining their accredited issuers. Furthermore, the Trust Scope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
-
-The **Trust Scope Credential** issued by the **Trust Scope Owner** mainly defines:
-
-- The **Scope** within which the TrustedIssuers are accredited (within which the issued credentials are considered valid).  
-- The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
-- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
-
-The `TrustScope` credential is defined by the following attributes:
+## Trusted Identity Provider
+This entity is representing the **Trusted Identity Provider** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section
 
 | Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
 |--------------------------|-------------------|-----------|-----------------------------------------------------|
-| `scopeDescription`    | String            | No        | A description of the scope of the Trust Service Provider |
-| `trustIssuers`        | TrustedDigitalIdentity[] | Yes       | A list of **Strongly Bound TrustedDigitalIdentity** identifying the Issuer(s) of the Scope |
-| `vocabularies`        | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
-| `schemas`             | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
-| `trustedListKind`     | KindOfTrustedList | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors | 
-| `trustedListEndpoint` | URI               | No        | The address of the above trusted list | 
+| `trustedIssuer`          | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
+| `trustedListKind`        | ProviderType | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors | 
+| `trustedListEndpoint`    | URI               | No        | The address of the above trusted list | 
 
-The `KindOfTrustedList` type defines the list of identified implementations of Trusted Lists:
+The `ProviderType`  defines the list of identified implementations of Trusted Lists:
 
 | Value                | Description 
 |----------------------|--------------------------------------------------------------------------------|
@@ -79,6 +65,27 @@ The `KindOfTrustedList` type defines the list of identified implementations of T
 
 **Important Note**
 The *Generic Trusted List REST API Specification* is meant to be a simple API contract that, for a given DID can return "true" if it is still valid. This will be very useful to enable the integration of any custom trusted list not included in the defined list.
+
+## Trust Scope
+
+The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credential), described later in this section, by defining their accredited issuers. Furthermore, the TrustScope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
+
+The **TrustScope Credential** issued by the **Trust Scope Owner** mainly defines:
+
+- The description of the **Scope** within which the semantic model, the trusted identity providers, and the semantic identity providers are to be considered valid.  
+- The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
+- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
+- The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
+
+The `TrustScope` credential is defined by the following attributes:
+
+| Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
+|--------------------------|-------------------|-----------|-----------------------------------------------------|
+| `scopeDescription`       | String            | No        | A description of the scope of the Trusted Scope |
+| `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
+| `vocabularies`           | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
+| `schemas`                | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
+| `trustedIdentityProviders` | TrustedIdentityProvider[] | Yes       | A list of **Trusted Identity Provider** considered trustworthy in the Scope |
 
 ## Trust Relation
 
