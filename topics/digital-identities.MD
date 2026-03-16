@@ -91,7 +91,7 @@ This scope is defined by an ecosystem governance that onboards members, assignin
 | Scope Owner | The Ecosystem Governance |
 | Trusted ID Provider | The Ecosystem Governance itself for both Humans and Machines |
 | Semantic Model | Membership information, Roles, Permissions, Rights (defined using Verifiable Credentials) |
-| Trusted Issuers | The trusted digital identities controlled by the governance that are entitled to issue VC containing semantic information |
+| Semantic ID Issuers | The trusted digital identities controlled by the governance that are entitled to issue VC containing semantic information |
 | Technical Info | SSI-Based Strongly Bound + Distributed Ledger based trusted list |
 
 #### Simpl-Open Dataspace
@@ -102,7 +102,7 @@ This scope is defined by a data space Governance Authority that wants to define 
 | Scope Owner | The data space governance authority |
 | Trusted ID Provider | The data space governance itself for Machines and an eIDAS Qualified Trust Service Provider for Humans  |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Identity Attributes) |
-| Trusted Issuers | The trusted digital identities deployed in the data space governance authority Agent that are entitled to issue signed proof containing semantic information |
+| Semantic ID Issuers | The trusted digital identities deployed in the data space governance authority Agent that are entitled to issue signed proof containing semantic information |
 | Technical Info | PKI-Based + Security Attributes Provider |
 
 #### EDC Dataspace
@@ -113,7 +113,5 @@ This scope is defined by a data space Governance Authority that wants to define 
 | Scope owner | The data space governance authority |
 | Trusted ID Provider | The data space governance authority itself for both Humans (VC) and Machines (x509) |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Verifiable Credentials) |
-| Trusted Issuers | The trusted digital identities controlled by the data space governance authority that are entitled to issue VC containing semantic information  |
+| Semantic ID Issuers | The trusted digital identities controlled by the data space governance authority that are entitled to issue VC containing semantic information  |
 | Technical Info | SSI-Based + Bitstring Status List |
-
-
