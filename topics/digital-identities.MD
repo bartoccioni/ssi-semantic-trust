@@ -22,7 +22,7 @@ Surely, further combinations of controller/access are possible, but they do not 
 
 ### Trusted Identity Layer
 
-This layer is present when an **Trusted Identity Provider** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trusted identity providers that can be selected depending on the scope and the needed level of trust are grouped in two main categories:
+This layer is present when a **Trusted Identity Provider** (also referred to as **Trust Service Provider - TSP**) is needed to ensure that, for a certain scope, a Cryptographic Digital Identity is controlled by a **known trusted party**. The several types of trusted identity providers that can be selected depending on the scope and the needed level of trust are grouped into two main categories:
 
 - **Self-Sovereign Identity-based** (or SSI-based) that relies on a *distributed ledger* (DLT) and *decentralized identifiers* (DID) to ensure trust across all parties of a scope under control of the provider itself in a privacy-preserving way.
   - **Standard** - This kind of provider trusts the "full" DID and its controller. NOTE that the list of cryptographic identities contained in the DID is up to the DID Controller, and for that reason, the provider cannot trust a specific cryptographic identity.
@@ -34,7 +34,7 @@ For both categories, there are three levels of trust
 - **Standard** This kind of provider is part of an existing trusted PKI valid across a state or worldwide(like CA/B Forum for SSL X509 Certificates).
 - **Qualified (Europe Only)** same as previous, but in this case, the provider is part of the European eIDAS framework and is a **Qualified Trust Service Provider** and is also used to perform Qualified Electronic Signatures.
 
-Note: The two kinds of provider can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
+Note: The two kinds of providers can be combined using an X509 certificate as one of the public keys of a DID Document, so that the best of both worlds work together
 
 #### Cryptographic and Trusted Identity Layers combined
 Here is a list showing the result of the most commonly used combinations of the two Identity Layers used to classify actors :
@@ -52,10 +52,14 @@ Here is a list showing the result of the most commonly used combinations of the 
 
 ### Semantic Identity Layer
 
-This layer is where a **trusted digital identity** is enriched with semantic information used to interact with it by a **Semantic Identity Provider** in a certain **Scope**, that is basically defined by the following elements:
-- The Trust Anchor or controller -> who is defining the scope
-- The semantic model -> which information is useful to define the scope and the actors participating in it
-- The trusted issuers -> who is entitled to issue and revoke the above information to other trusted digital identities
+This layer is where a **Semantic Identity Provider** defines a **Scope**, trusts one or more **Trusted Identity Provider**s, and finally onboards **Trusted Digital Identities** by enriching them with semantic information, making them become **Semantic Digital Identities** that can operate as part of the scope.
+
+Here is what is needed to describe a Scope:
+
+- Scope Owner -> who is defining the scope
+- Trusted Identity Provider -> who is ensuring that all actors are Trustworthy ( **Trusted Digital Identities**)
+- Semantic Model -> which information is useful to define the scope and the actors participating in it
+- Semantic Identity Provider Issuers -> trusted digital identity/s who are entitled to issue and revoke the above information
 - The technical details -> how and if one semantic information can be issued/verified in real-time
 
 Below are the most common/spread scopes and their description
@@ -65,9 +69,10 @@ This scope is defined by an organisation that onboards its employees and manages
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The organisation itself |
+| Scope Owner | The organisation itself |
+| Trusted ID Provider | The organisation itself for both Humans and Machines |
 | Semantic Model | Identity information, Hierarchy information, Roles, Permissions (defined using Verifiable Credentials) |
-| Trusted Issuers | The trusted digital identities controlled by the organisation that are entitled to issue VC containing semantic information |
+| Semantic ID Issuers | The trusted digital identities controlled by the organisation that are entitled to issue VC containing semantic information, such as the HR department |
 | Technical Info | SSI-Based Strongly Bound + Bitstring Status List |
 
 
@@ -76,8 +81,9 @@ This scope is defined by an ecosystem governance that onboards members, assignin
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The Ecosystem Governace |
-| Semantic Model | Identity information, Roles, Permissions (defined using Verifiable Credentials) |
+| Scope Owner | The Ecosystem Governance |
+| Trusted ID Provider | The Ecosystem Governance itself for both Humans and Machines |
+| Semantic Model | Membership information, Roles, Permissions, Rights (defined using Verifiable Credentials) |
 | Trusted Issuers | The trusted digital identities controlled by the governance that are entitled to issue VC containing semantic information |
 | Technical Info | SSI-Based Strongly Bound + Distributed Ledger based trusted list |
 
@@ -86,7 +92,8 @@ This scope is defined by a data space Governance Authority that wants to define 
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The data space governance authority |
+| Scope Owner | The data space governance authority |
+| Trusted ID Provider | The data space governance itself for Machines and an eIDAS Qualified Trust Service Provider for Humans  |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Identity Attributes) |
 | Trusted Issuers | The trusted digital identities deployed in the data space governance authority Agent that are entitled to issue signed proof containing semantic information |
 | Technical Info | PKI-Based + Security Attributes Provider |
@@ -96,7 +103,8 @@ This scope is defined by a data space Governance Authority that wants to define 
 
 | Scope element | Description |
 | --- | ----------- |
-| Trust Anchor | The data space governance authority |
+| Scope owner | The data space governance authority |
+| Trusted ID Provider | The data space governance authority itself for both Humans (VC) and Machines (x509) |
 | Semantic Model | Identity information, Roles, Rights, Permissions (defined using Verifiable Credentials) |
 | Trusted Issuers | The trusted digital identities controlled by the data space governance authority that are entitled to issue VC containing semantic information  |
 | Technical Info | SSI-Based + Bitstring Status List |
