@@ -1,5 +1,13 @@
 # Semantic Model
-The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. 
+The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. To give a quick and high-level idea of the full context of the model, the entities are grouped into several sections dedicated to covering specific topics:
+
+- Know who you trust
+- Define what you trust
+- Extend your trust
+- Human in the loop
+
+# Know who you trust
+This section is about choosing Actors and their Identity Providers
 
 ## Trusted Digital Identity
 
@@ -66,6 +74,9 @@ The `ProviderType`  defines the list of identified implementations of Trusted Li
 **Important Note**
 The *Generic Trusted List REST API Specification* is meant to be a simple API contract that, for a given DID can return "true" if it is still valid. This will be very useful to enable the integration of any custom trusted list not included in the defined list.
 
+# Define what you trust
+This section is about expressing and describing in an interoperable way a Scope, its Actors, its Semantic Model, and how they are correlated
+
 ## Trust Scope
 
 The **Trust Scope** has the purpose of providing a trustworthy representation of all meaningful information for a specific scope described by a **Trust Scope Owner** (see [The Scope - all layers together](digital-identities.MD#the-scope---all-layers-together) section). This credential enables the usage of [Party Credentials](#party-credential), described later in this section, by defining their accredited issuers. Furthermore, the TrustScope Credential supports the cooperation and interoperability between organisations/ecosystems/data spaces, used in conjunction with the TrustRelation Credentials.
@@ -86,30 +97,6 @@ The `TrustScope` credential is defined by the following attributes:
 | `vocabularies`           | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
 | `schemas`                | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
 | `trustedIdentityProviders` | TrustedIdentityProvider[] | Yes       | A list of **Trusted Identity Provider** considered trustworthy in the Scope |
-
-## Trust Relation
-
-The **Trust Relation** entity is both simple and powerful; it represents and defines the will of a certain Trust Scope Owner to **trust** another **Trust Scope** and how this relation is mapped/translated in the semantics of its own Trust Scope
-
-### Federation using Trust Scope Credentials
-
-The **TrustScopeCredential** is designed with interoperability in mind and easily enables implementation of selective, bidirectional and monodirectional trust, and a federation between two or more trusted scopes is the perfect use case. Below are some examples:
-
-#### Monodirectional selective federation between 2 Ecosystems
-
-Ecosystem A can enable federation with Ecosystem B by simply trusting the **trusted issuers** of the **EcosystemTrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust.
-
-#### Bidirectional full federation between 2 Ecosystems
-
-Ecosystem A enables federation with Ecosystem B by fully trusting the **EcosystemTrustScope** issued by Ecosystem B, and vice versa.
-
-#### Federation managed by an operator that selectively trusts multiple Ecosystems
-
-An Ecosystem operator maintains the list of the **trusted issuers** and relative **Domain Specific Credentials** of the trusted **EcosystemTrustScope** issued by Ecosystems.
-
-**Important Note**
-In all the above examples, the *trusting* relationship can be concretely implemented by issuing a [verifiable credential](https://www.w3.org/TR/vc-data-model-2.0/) whose [credentialSubject](https://www.w3.org/TR/vc-data-model-2.0/#credential-subject) is the ID of the **EcosystemTrustScope**. Alternatively, a more fine-grained **TrustRelationCredential** could be designed for that purpose.
-
 
 ## Party Credential 
 
@@ -142,6 +129,34 @@ An example of this type of credential is the **NaturalPersonCredential**, issued
 A public party credential is a **Party Credential** containing data that can be publicly accessed and queried.
 An example of this is the **MembershipPartyCredential** issued by a Trusted Issuer of a specific Trust scope (Organisation, Ecosystem, Data space, etc) to a Trusted Digital Identity in order to attest its Membership status in the scope context.
 
+# Extend your trust
+This section is about enabling the extension of the trust of your Scope to other Scopes
+
+## Trust Relation
+
+The **Trust Relation** entity is both simple and powerful; it represents and defines the will of a certain Trust Scope Owner to **trust** another **Trust Scope** and how this relation is mapped/translated in the semantics of its own Trust Scope
+
+### Federation using Trust Scope Credentials
+
+The **TrustScopeCredential** is designed with interoperability in mind and easily enables implementation of selective, bidirectional and monodirectional trust, and a federation between two or more trusted scopes is the perfect use case. Below are some examples:
+
+#### Monodirectional selective federation between 2 Ecosystems
+
+Ecosystem A can enable federation with Ecosystem B by simply trusting the **trusted issuers** of the **EcosystemTrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust.
+
+#### Bidirectional full federation between 2 Ecosystems
+
+Ecosystem A enables federation with Ecosystem B by fully trusting the **EcosystemTrustScope** issued by Ecosystem B, and vice versa.
+
+#### Federation managed by an operator that selectively trusts multiple Ecosystems
+
+An Ecosystem operator maintains the list of the **trusted issuers** and relative **Domain Specific Credentials** of the trusted **EcosystemTrustScope** issued by Ecosystems.
+
+**Important Note**
+In all the above examples, the *trusting* relationship can be concretely implemented by issuing a [verifiable credential](https://www.w3.org/TR/vc-data-model-2.0/) whose [credentialSubject](https://www.w3.org/TR/vc-data-model-2.0/#credential-subject) is the ID of the **EcosystemTrustScope**. Alternatively, a more fine-grained **TrustRelationCredential** could be designed for that purpose.
+
+# Human in the loop
+This section is dedicated to including the human assertions in the trusted interactions between actors of a scope
 
 ## Signature Credential
 
