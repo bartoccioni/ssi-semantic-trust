@@ -4,7 +4,7 @@ The semantic model is a set of base entities expressed using the [Verifiable Cre
 - Know who you trust
 - Define what you trust
 - Extend your trust
-- Human in the loop
+- Trustworthy human in the loop
 
 # Know who you trust
 This section is about choosing Actors and their Identity Providers
@@ -155,7 +155,7 @@ An Ecosystem operator maintains the list of the **trusted issuers** and relative
 **Important Note**
 In all the above examples, the *trusting* relationship can be concretely implemented by issuing a [verifiable credential](https://www.w3.org/TR/vc-data-model-2.0/) whose [credentialSubject](https://www.w3.org/TR/vc-data-model-2.0/#credential-subject) is the ID of the **EcosystemTrustScope**. Alternatively, a more fine-grained **TrustRelationCredential** could be designed for that purpose.
 
-# Human in the loop
+#  Trustworthy human in the loop
 This section is dedicated to including the human assertions in the trusted interactions between actors of a scope
 
 ## Signature Credential
