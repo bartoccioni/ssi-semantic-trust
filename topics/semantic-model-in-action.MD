@@ -34,6 +34,17 @@ This specialisation is a self-issued credential that entitles an Ecosystem opera
 
 ## Party Credential
 
+### Private Party Credential
+
+**Party Credentials** containing PII are not considered to be published and resolvable via their **id** to everybody, instead, they are intended to be stored in secure storage such as a wallet, secure storage device, secure vault storage, etc.
+An example of this type of credential is the **NaturalPersonCredential**, issued by an Organisation to one of its users/employees, with the purpose to entitle a Natural Person to interact with Relying Parties(RP) in the context of the organisation.
+
+### Public Party Credential
+
+A public party credential is a **Party Credential** containing data that can be publicly accessed and queried.
+An example of this is the **MembershipPartyCredential** issued by a Trusted Issuer of a specific Trust scope (Organisation, Ecosystem, Data space, etc) to a Trusted Digital Identity in order to attest its Membership status in the scope context.
+
+
 #### Private Party Credential Example
 
 The following **NaturalPersonPartyCredential** example represents the scenario where the Participant **did:web:did.actor:alice** is issuing a credential that asserts several claims (givenName, surname, idRoles etc).
