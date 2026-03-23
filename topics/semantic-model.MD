@@ -1,7 +1,7 @@
 # Semantic Model
 The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. To give a quick and high-level idea of the full context of the model, the entities are grouped into several sections dedicated to covering specific topics:
 
-- Know who you trust
+- <h2>Know who you trust</h2>
 - Define what you trust
 - Extend your trust
 - Trustworthy human in the loop
