@@ -1,10 +1,10 @@
 # Semantic Model
 The semantic model is a set of base entities expressed using the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) that are extensible, customisable and specialisable and can be used to implement almost any **Trust Scope** Use Case. To give a quick and high-level idea of the full context of the model, the entities are grouped into several sections dedicated to covering specific topics:
 
-- <h2>Know who you trust</h2>
-- Define what you trust
-- Extend your trust
-- Trustworthy human in the loop
+- [Know who you trust](#know-who-you-trust)
+- [Define what you trust](#define-what-you-trust)
+- [Extend your trust](#extend-your-trust)
+- [Trustworthy human in the loop](#trustworthy-human-in-the-loop)
 
 # Know who you trust
 This section is about choosing Actors and their Identity Providers
@@ -57,15 +57,25 @@ This entity is representing the **Trusted Identity Provider** itself as defined 
 | Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
 |--------------------------|-------------------|-----------|-----------------------------------------------------|
 | `trustedIssuer`          | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
-| `trustedListKind`        | ProviderType | No        | Which kind of implementation of the trusted list is used to check DID issued by Trust Anchors | 
+| `trustedProviderType`    | ProviderType | No        | Which type of trusted identity provider  | 
+| `trustedListKind`    | TrustedListKind | No        | Which kind of implementation of the trusted list is used to check the issued trusted identity | 
 | `trustedListEndpoint`    | URI               | No        | The address of the above trusted list | 
 
-The `ProviderType`  defines the list of identified implementations of Trusted Lists:
+The `ProviderType` defines the technology framework stack:
+
+| Value                | Description 
+|----------------------|--------------------------------------------------------------------------------|
+| `PKI`                | Public Key Infrastructure - PKI-based Trusted Identity Provider that issues X509 Certificates |
+| `SSI` |  Self Sovereign Identity - SSI-based Trusted Identity Provider that uses DIDs and Verifiable Credentials |
+| `Both` |  The combination of SSI and PKI that uses X509 Certificates in the DIDs  |
+
+
+The `TrustedListKind`  defines the list of identified implementations of Trusted Lists:
 
 | Value                | Description 
 |----------------------|--------------------------------------------------------------------------------|
 | `API`                | Generic Trusted List REST API Specification |
-| `LOTLeIDAS` |  List Of Trusted Lists with ETSI TS 119 612 format (eIDAS Qualified Trusted Service Providers) |
+| `OCSP` | Online Certificate Status Protocol (OCSP) on Trust Service Provider (TSP) or Qualified TSP in case of eIDAS framework  |
 | `TRAIN` | Trusted list of trust anchors using DNS(SEC) |
 | `EBSI` | European Blockchain Services Infrastructure (EBSI) |
 | `OTHER` | other possible implementations |
@@ -86,7 +96,8 @@ The **TrustScope Credential** issued by the **Trust Scope Owner** mainly defines
 - The description of the **Scope** within which the semantic model, the trusted identity providers, and the semantic identity providers are to be considered valid.  
 - The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Trusted List** is used to check DIDs issued by the Trust Service Provider.
+- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
+- The **Trusted Identity Providers** are used to check if a Cryptographic Digital Identity is to be considered Trusted.
 
 The `TrustScope` credential is defined by the following attributes:
 
@@ -96,22 +107,31 @@ The `TrustScope` credential is defined by the following attributes:
 | `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
 | `vocabularies`           | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
 | `schemas`                | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
-| `trustedIdentityProviders` | TrustedIdentityProvider[] | Yes       | A list of **Trusted Identity Provider** considered trustworthy in the Scope |
+| `trustedIdentityProviders` | TrustedIdentityProvider[] | Yes       | A list of **Trusted Identity Provider** considered trustworthy in the Scope used to check **Trusted Digital Identities** |
 
 ## Party Credential 
 
-The Party Credential is based upon the [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/) and is the basis for all IAA Parties such as **Natural Persons** , **Services**, **Legal Persons**, etc. 
-The general-purpose party credential is intended to be extended into specialized Credentials (see **Party Credential Specialisations**) 
+The Party Credential is the basis for describing and enabling Actors as IAA Parties such as **Natural Persons**, **Services**, **Legal Persons**, etc. 
+The general-purpose Party Credential is intended to be extended into specialised Credentials (see **Party Credential Specialisations**) and designed to be trustfully "chained" so that a party receiving a  
+
+The **Party Credential** issued by one of the **Trusted Issuers** of the **Trust Scope Owner** mainly defines:
+
+- The **Strongly Bound TrustedDigitalIdentity** identifying the Holder who can do the **Proof of Possesion** of this credential
+- The **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
+- The **Policies** (expressed in ODRL) that define the conditions under which this credential is to be considered "active".
+- The **Identity Role and Attributes** defined in the **Scope** and assigned to the Party.
+- The **Parent** used to create and verify the chain of delegation.
 
 The `PartyCredential` is defined by the following attributes:
 
 | Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
 |-------------------------|------------------|-----------|---------------------------------------------------|
 | `holder`                | TrustedDigitalIdentity | Yes | A resolavable link to a **Strongly Bound TrustedDigitalIdentity** identifying the Holder who can do the **Proof of Possesion** of this credential |
-| `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL |
-| `identityAttributes`    | String[]         | No | A list of literals representing Identity Attributes to be used in an Attribute-Based Access Control (ABAC) context | 
-| `identityRoles`         | String[]         | No | A list of literals representing Identity Roles to be used in a Role-Based Access Control (RBAC) context | 
-| `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **signer** of this credential (same public key and digest) | 
+| `trustScope`            | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** used to validate this credential (issuers, attributes, roles) in the **Scope** | 
+| `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL to be used to verify if the credential is to be considered "active" in the **Scope** |
+| `identityAttributes`    | Attribute[]         | No | A list of Identity Attributes (defined in the scope schema/vocabulary), to be used in an Attribute-Based Access Control (ABAC) context | 
+| `identityRoles`         | Role[]         | No | A list of Identity Roles (defined in the scope schema/vocabulary), to be used in a Role-Based Access Control (RBAC) context | 
+| `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **issuer** of this credential (same public key and digest) | 
 
 **VERY IMPORTANT NOTE**
 To enable the delegation of rights (Power Of Attorney-like ) using the **PartyCredential**, the `parentPartyCredential` property must refer to a credential that is a superset of the `identityAttributes` and `identityRoles` properties with no exception.
@@ -119,22 +139,30 @@ To enable the delegation of rights (Power Of Attorney-like ) using the **PartyCr
 The **credentialSubject.id** MUST identify the **DID Document** that is referenced by the `holder` property that *belongs to/is controlled by* the **Credential Holder**.
 With this solution, the PartyCredential VC can be either publicly published in case it contains no sensitive data or kept private in case it contains PII - Personal Identifiable Information.
 
-### Private Party Credential
-
-**Party Credentials** containing PII are not considered to be published and resolvable via their **id** to everybody, instead, they are intended to be stored in secure storage such as a wallet, secure storage device, secure vault storage, etc.
-An example of this type of credential is the **NaturalPersonCredential**, issued by an Organisation to one of its users/employees, with the purpose to entitle a Natural Person to interact with Relying Parties(RP) in the context of the organisation.
-
-### Public Party Credential
-
-A public party credential is a **Party Credential** containing data that can be publicly accessed and queried.
-An example of this is the **MembershipPartyCredential** issued by a Trusted Issuer of a specific Trust scope (Organisation, Ecosystem, Data space, etc) to a Trusted Digital Identity in order to attest its Membership status in the scope context.
-
 # Extend your trust
 This section is about enabling the extension of the trust of your Scope to other Scopes
 
 ## Trust Relation
 
-The **Trust Relation** entity is both simple and powerful; it represents and defines the will of a certain Trust Scope Owner to **trust** another **Trust Scope** and how this relation is mapped/translated in the semantics of its own Trust Scope
+The **Trust Relation** entity is both simple and powerful; it represents and defines the will of a certain **Trust Scope Owner** to **trust** another **Trust Scope** and describes how this relation is mapped/translated in the semantics of its own Trust Scope
+
+The **TrustRelation Credential** issued by the **Trust Scope Owner** mainly defines:
+
+- The Trustor **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
+- The Trusted **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
+- The **Policies** (expressed in ODRL) that define the conditions under which this relation is to be considered "active" and "valid".
+- The **Identity Role and Attributes Mappings** that are used to perform the trusted translation (from the trusted to the trustor).
+- The **Parent** used to create and verify the chain of delegation.
+
+The `TrustRelationCredential` is defined by the following attributes:
+
+| Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
+|-------------------------|------------------|-----------|---------------------------------------------------|
+| `trustorScope`          | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** that extends is **trust** | 
+| `trustedScope`          | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** to **trust**  | 
+| `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL to be used to verify if the relation is to be considered "active" and "valid" |
+| `identityAttributes`    | AttributeMapping[]    | No | A list of Identity Attributes Mapping (defined in the scope schema/vocabulary), to be used for translation | 
+| `identityRoles`         | RoleMapping[]         | No | A list of Identity Roles Mapping (defined in the scope schema/vocabulary), to be used for translation | 
 
 ### Federation using Trust Scope Credentials
 
