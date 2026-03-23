@@ -28,7 +28,7 @@ The **Trusted Digital Identity Credential** has the purpose of describing the **
 
 The `TrustedDigitalIdentity` credential is defined by the following attributes:
 
-| Attribute       | Type.Value/Voc    | Mandatory | Comment                         |
+| Attribute       | Type    | Mandatory | Comment                         |
 |-----------------|-------------------|-----------|---------------------------------|
 | `controller`    | ControllerKind    | Yes       | The kind of controller of the Cryptographinc Digital Identity |
 | `level`         | TrustLevelType    | Yes       | The self-declared level of trust of the **Trusted Identity Provider** that is also the issuer of this credential |
@@ -54,7 +54,7 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 ## Trusted Identity Provider
 This entity is representing the **Trusted Identity Provider** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section
 
-| Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
+| Attribute                | Type    | Mandatory | Comment                                             |
 |--------------------------|-------------------|-----------|-----------------------------------------------------|
 | `trustedIssuer`          | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
 | `trustedProviderType`    | ProviderType | No        | Which type of trusted identity provider  | 
@@ -101,7 +101,7 @@ The **TrustScope Credential** issued by the **Trust Scope Owner** mainly defines
 
 The `TrustScope` credential is defined by the following attributes:
 
-| Attribute                | Type.Value/Voc    | Mandatory | Comment                                             |
+| Attribute                | Type    | Mandatory | Comment                                             |
 |--------------------------|-------------------|-----------|-----------------------------------------------------|
 | `scopeDescription`       | String            | No        | A description of the scope of the Trusted Scope |
 | `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
@@ -124,7 +124,7 @@ The **Party Credential** issued by one of the **Trusted Issuers** of the **Trust
 
 The `PartyCredential` is defined by the following attributes:
 
-| Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
+| Attribute               | Type   | Mandatory | Comment                                           |
 |-------------------------|------------------|-----------|---------------------------------------------------|
 | `holder`                | TrustedDigitalIdentity | Yes | A resolavable link to a **Strongly Bound TrustedDigitalIdentity** identifying the Holder who can do the **Proof of Possesion** of this credential |
 | `trustScope`            | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** used to validate this credential (issuers, attributes, roles) in the **Scope** | 
@@ -156,23 +156,31 @@ The **TrustRelation Credential** issued by the **Trust Scope Owner** mainly defi
 
 The `TrustRelationCredential` is defined by the following attributes:
 
-| Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
+| Attribute               | Type   | Mandatory | Comment                                           |
 |-------------------------|------------------|-----------|---------------------------------------------------|
-| `trustorScope`          | TrustScopeCredential  | Yse | A resolvable link to a **TrustScopeCredential** that extends is **trust** | 
+| `trustorScope`          | TrustScopeCredential  | Yes | A resolvable link to a **TrustScopeCredential** that extends is **trust** | 
 | `trustedScope`          | TrustScopeCredential  | Yes | A resolvable link to a **TrustScopeCredential** to **trust**  | 
 | `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL to be used to verify if the relation is to be considered "active" and "valid" |
-| `identityAttributes`    | AttributeMapping[]    | No | A list of Identity Attributes Mapping (defined in the scope schema/vocabulary), to be used for translation | 
-| `identityRoles`         | RoleMapping[]         | No | A list of Identity Roles Mapping (defined in the scope schema/vocabulary), to be used for translation | 
+| `mappings`              | TrustMapping[]   | No | A list of TrustMapping, to be used for translation | 
+
+The `TrustMapping` defines how the translation between **Scope Specific Credentials** is to be performed:
+
+| Attribute          | Type          | Mandatory | Comment                                           |
+|--------------------|---------------|-----------|---------------------------------------------------|
+| `trusted`          | Credential Type or Claim | Yes | A **Type** or one of its **Claim** defined in the schema/vocabulary of the **Trusted** scope | 
+| `traslated`        | Credential Type or Claim | Yes | A **Type** or one of its **Claim** defined in the schema/vocabulary of the **Trustor** scope | 
+
+
 
 ### Federation using Trust Scope Credentials
 
 The **TrustScopeCredential** is designed with interoperability in mind and easily enables implementation of selective, bidirectional and monodirectional trust, and a federation between two or more trusted scopes is the perfect use case. Below are some examples:
 
-#### Monodirectional selective federation between 2 Ecosystems
+#### Monodirectional selective federation between two Data space scopes 
 
-Ecosystem A can enable federation with Ecosystem B by simply trusting the **trusted issuers** of the **EcosystemTrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust.
+Data space A can enable federation with Data space B by simply trusting the **trusted issuers** of the **EcosystemTrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust.
 
-#### Bidirectional full federation between 2 Ecosystems
+#### Bidirectional full federation between 2 Trust Scopes 
 
 Ecosystem A enables federation with Ecosystem B by fully trusting the **EcosystemTrustScope** issued by Ecosystem B, and vice versa.
 
@@ -205,7 +213,7 @@ The **SignatureCredential** in the trust model defined by the ICAM Document, rep
 
 The concept behind this credential is the same as the credentials issued by the compliance service, to issue Participant Credentials and  Service Offering Credentials (using the "credentialSubject" claim), where the **credentialSubject** consists in:
 
-| Attribute   | Type.Value/Voc | Mandatory | Comment                                                                                                                                                                                                                                     |
+| Attribute   | Type | Mandatory | Comment                                                                                                                                                                                                                                     |
 |-------------|----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `type`      | string         | Yes       | Indicating the *type* of the subject to be Signed                                                                                                                                                                                           |
 | `id`        | URI            | Yes       | A resolvable single URI as defined in the [VC Specification](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) identifying the subject to be Signed                                                                                     |
