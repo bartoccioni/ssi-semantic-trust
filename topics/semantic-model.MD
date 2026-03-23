@@ -200,14 +200,14 @@ The Signature Credential is a Verifiable Credential introduced to express digita
 
 By using a verification method associated with a certificate issued under a recognized legal trust framework (e.g. eIDAS), the Signature Credential may achieve legal equivalence with handwritten signatures, depending on the assurance level (e.g., Qualified Electronic Signature).  
 
-A specialization of this credential, Signed Agreement Credential, introduces revocability to model agreements whose validity may be rescinded over time. These credentials can be issued independently by each participant and later aggregated into a Verifiable Presentation, thus enabling decentralized signature workflows for contracts such as data usage agreements.  
+A specialisation of this credential, Signed Agreement Credential, introduces revocability to model agreements whose validity may be rescinded over time. These credentials can be issued independently by each participant and later aggregated into a Verifiable Presentation, thus enabling decentralised signature workflows for contracts such as data usage agreements.  
 
 
 Important note: the issuance of a signature credential from a digital identity bound to a human-controlled device/wallet, can be used to realise the "human-in-the-loop" interaction.
 
 This approach promotes semantic clarity, cryptographic assurance, and interoperability across use cases involving legally binding actions, whether initiated by humans or automated agents. It also enables trust anchors and policies defined in the Gaia-X Trust Framework to validate each Signature Credential independently. 
 
-### Multiple Signatures using SignatureCredential specializations
+### Multiple Signatures using SignatureCredential specialisations
 
 The **SignatureCredential** in the trust model defined by the ICAM Document, represents a general purpose and machine readable *signature* that Participants are asked to provide in several contexts, one of the most important of these contexts is represented by the [Data Transaction](...) section of the Data Exchange Document(version...) where this credential will be used to sign **[Data Usage Agreement](...)** and **Data Product Usage Contract**.
 
