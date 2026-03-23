@@ -148,8 +148,8 @@ The **Trust Relation** entity is both simple and powerful; it represents and def
 
 The **TrustRelation Credential** issued by the **Trust Scope Owner** mainly defines:
 
-- The Trustor **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
-- The Trusted **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
+- The **Trustor Scope** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this relation.
+- The **Trusted Scope** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this relation.
 - The **Policies** (expressed in ODRL) that define the conditions under which this relation is to be considered "active" and "valid".
 - The **Identity Role and Attributes Mappings** that are used to perform the trusted translation (from the trusted to the trustor).
 - The **Parent** used to create and verify the chain of delegation.
