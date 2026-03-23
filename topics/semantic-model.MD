@@ -158,8 +158,8 @@ The `TrustRelationCredential` is defined by the following attributes:
 
 | Attribute               | Type.Value/Voc   | Mandatory | Comment                                           |
 |-------------------------|------------------|-----------|---------------------------------------------------|
-| `trustorScope`          | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** that extends is **trust** | 
-| `trustedScope`          | TrustScopeCredential  | No | A resolvable link to a **TrustScopeCredential** to **trust**  | 
+| `trustorScope`          | TrustScopeCredential  | Yse | A resolvable link to a **TrustScopeCredential** that extends is **trust** | 
+| `trustedScope`          | TrustScopeCredential  | Yes | A resolvable link to a **TrustScopeCredential** to **trust**  | 
 | `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL to be used to verify if the relation is to be considered "active" and "valid" |
 | `identityAttributes`    | AttributeMapping[]    | No | A list of Identity Attributes Mapping (defined in the scope schema/vocabulary), to be used for translation | 
 | `identityRoles`         | RoleMapping[]         | No | A list of Identity Roles Mapping (defined in the scope schema/vocabulary), to be used for translation | 
