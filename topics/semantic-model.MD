@@ -194,6 +194,12 @@ In all the above examples, the *trusting* relationship can be concretely impleme
 #  Trustworthy human in the loop
 This section is dedicated to including the human assertions in the trusted interactions between actors of a scope
 
+## Assertion
+
+The assertion entity is designed to represent different types of **will** of an **actor** (or party), the will to sign a contract, the will to provide consent towards a certain action, the will to accept an agreement, the will to provide permission for a certain action and so on. The only condition needed to make assertions viable is that their reference must be another verifiable credential; for example, a Signature assertion must refer to a Contract in the form of a VC.
+Assertions must not use a publicly resolvable [identifier](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) and can be **Revocable** or **Irrevocable**, and this can be achieved simply by using the [`credentialStatus`](https://www.w3.org/TR/vc-data-model-2.0/#status) in conjunction with the [BitstringCredentialStatusList](https://www.w3.org/TR/vc-bitstring-status-list/)
+
+
 ## Signature Credential
 
 The Signature Credential is a Verifiable Credential introduced to express digital signatures in a machine-readable and interoperable form enabling several scenarios ranging from data transaction permissions to agreement signing. It allows participants to cryptographically sign digital resources and bind the signature to the identity of the signer with verifiable integrity.  
@@ -213,11 +219,11 @@ The **SignatureCredential** in the trust model defined by the ICAM Document, rep
 
 The concept behind this credential is the same as the credentials issued by the compliance service, to issue Participant Credentials and  Service Offering Credentials (using the "credentialSubject" claim), where the **credentialSubject** consists in:
 
-| Attribute   | Type | Mandatory | Comment                                                                                                                                                                                                                                     |
-|-------------|----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`      | string         | Yes       | Indicating the *type* of the subject to be Signed                                                                                                                                                                                           |
-| `id`        | URI            | Yes       | A resolvable single URI as defined in the [VC Specification](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) identifying the subject to be Signed                                                                                     |
-| `digestSRI` | String         | Yes       | Integrity of related Resources as defined in [W3C VC Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/#integrity-of-related-resources) to ensure that referenced resource is not changed/modified/tampered(still identical in time) | 
+| Attribute   | Type | Mandatory | Comment                             |
+|-------------|------|-----------|-------------------------------------|
+| `type`      | string | Yes | Indicating the *type* of the subject to be Signed |
+| `id`        | URI    | Yes | A resolvable single URI as defined in the [VC Specification](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) identifying the subject to be Signed |
+| `digestSRI` | String | Yes | Integrity of related Resources as defined in [W3C VC Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/#integrity-of-related-resources) to ensure that referenced resource is not changed/modified/tampered(still identical in time) | 
 
 Another important factor is represented by the fact that, issuing and signing this credential with a **verificationMethod** bound to a certificate that has legal relevance (e.g eIDAS) gives it the same level of trust, enabling the possibility to check the `gx:legalValidity` property of the **Signature Check Type** (see `gx:signers` property).
 
