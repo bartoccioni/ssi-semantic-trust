@@ -54,6 +54,8 @@ The `TrustLevelType` defines the list of categories of trust of the **Trusted Id
 ## Trusted Identity Provider
 This entity is representing the **Trusted Identity Provider** itself as defined in the [Trusted Identity Layer](digital-identities.MD#trusted-identity-layer) section
 
+The `TrustedIdentityProvider` credential is defined by the following attributes:
+
 | Attribute                | Type    | Mandatory | Comment                                             |
 |--------------------------|-------------------|-----------|-----------------------------------------------------|
 | `trustedIssuer`          | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
@@ -68,7 +70,6 @@ The `ProviderType` defines the technology framework stack:
 | `PKI`                | Public Key Infrastructure - PKI-based Trusted Identity Provider that issues X509 Certificates |
 | `SSI` |  Self Sovereign Identity - SSI-based Trusted Identity Provider that uses DIDs and Verifiable Credentials |
 | `Both` |  The combination of SSI and PKI that uses X509 Certificates in the DIDs  |
-
 
 The `TrustedListKind`  defines the list of identified implementations of Trusted Lists:
 
@@ -174,22 +175,19 @@ The `TrustMapping` defines how the translation between **Scope Specific Credenti
 
 ### Federation using Trust Scope Credentials
 
-The **TrustScopeCredential** is designed with interoperability in mind and easily enables implementation of selective, bidirectional and monodirectional trust, and a federation between two or more trusted scopes is the perfect use case. Below are some examples:
+Both **TrustScope** and **TrustMapping** credentials are designed with interoperability in mind and easily enables implementation of selective, multidirectional and monodirectional trust, and a federation between two or more trusted scopes is the perfect use case. Below are some examples:
 
 #### Monodirectional selective federation between two Data space scopes 
 
-Data space A can enable federation with Data space B by simply trusting the **trusted issuers** of the **EcosystemTrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust.
+Data space A can enable federation with Data space B by simply trusting the **trusted issuers** of the **Ecosystem TrustScope** issued by Ecosystem B and selecting which subset of its **Domain Specific Credentials** to trust and mapping them in its own **Domain Specific Credentials** by issuing a **TrustMapping** credential.
 
 #### Bidirectional full federation between 2 Trust Scopes 
 
-Ecosystem A enables federation with Ecosystem B by fully trusting the **EcosystemTrustScope** issued by Ecosystem B, and vice versa.
+Ecosystem A enables federation with Ecosystem B by fully trusting the **Ecosystem TrustScope** issued by Ecosystem B as described above, and vice versa.
 
 #### Federation managed by an operator that selectively trusts multiple Ecosystems
 
 An Ecosystem operator maintains the list of the **trusted issuers** and relative **Domain Specific Credentials** of the trusted **EcosystemTrustScope** issued by Ecosystems.
-
-**Important Note**
-In all the above examples, the *trusting* relationship can be concretely implemented by issuing a [verifiable credential](https://www.w3.org/TR/vc-data-model-2.0/) whose [credentialSubject](https://www.w3.org/TR/vc-data-model-2.0/#credential-subject) is the ID of the **EcosystemTrustScope**. Alternatively, a more fine-grained **TrustRelationCredential** could be designed for that purpose.
 
 #  Trustworthy human in the loop
 This section is dedicated to including the human assertions in the trusted interactions between actors of a scope
@@ -199,8 +197,22 @@ This section is dedicated to including the human assertions in the trusted inter
 The assertion entity is designed to represent different types of **will** of an **actor** (or party), the will to sign a contract, the will to provide consent towards a certain action, the will to accept an agreement, the will to provide permission for a certain action and so on. The only condition needed to make assertions viable is that their reference must be another verifiable credential; for example, a Signature assertion must refer to a Contract in the form of a VC.
 Assertions must not use a publicly resolvable [identifier](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) and can be **Revocable** or **Irrevocable**, and this can be achieved simply by using the [`credentialStatus`](https://www.w3.org/TR/vc-data-model-2.0/#status) in conjunction with the [BitstringCredentialStatusList](https://www.w3.org/TR/vc-bitstring-status-list/)
 
+The **Assertion Credential** issued by any **Actor** as trustworthy affirmation of **will** mainly defines:
 
-## Signature Credential
+- The description of the **Scope** within which the semantic model, the trusted identity providers, and the semantic identity providers are to be considered valid.  
+- The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
+- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
+- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
+- The **Trusted Identity Providers** are used to check if a Cryptographic Digital Identity is to be considered Trusted.
+
+The `TrustScope` credential is defined by the following attributes:
+
+| Attribute                | Type    | Mandatory | Comment                                             |
+|--------------------------|-------------------|-----------|-----------------------------------------------------|
+| `scopeDescription`       | String            | No        | A description of the scope of the Trusted Scope |
+| `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
+
+## Assertion Credential
 
 The Signature Credential is a Verifiable Credential introduced to express digital signatures in a machine-readable and interoperable form enabling several scenarios ranging from data transaction permissions to agreement signing. It allows participants to cryptographically sign digital resources and bind the signature to the identity of the signer with verifiable integrity.  
 
