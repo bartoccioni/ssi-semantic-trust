@@ -96,5 +96,50 @@ This is how `Service Party Credential` will be defined by the following attribut
 This credential is issued by a Trusted Issuer of a specific Trust scope (Organisation, Ecosystem, Data space, etc) to a Trusted Digital Identiti in order to attest his Membership status.
 
 
+## Assertion
+
+#### SignedAgreementCredential
+
+The **SignedAgreementCredential** is a specialization of **SignatureCredential** that represents a *Revocable Signed Agreement* given by a participant to a specific subject (e.g. Data Usage Agreement, GDPR Agreement, etc.) and the only difference is that it can be revoked.
+
+ 
+#### Data Usage Agreement Example
+
+In a Data Transaction the **Data Provider**(did:web:provider.com) and a **Data Consumer**(did:web:consumer.com) must agree to a **Data Usage Agreement** (**id** "https://provider.com/data-usage-contract.654321") and this is done treating "Signatures" as a **Verifiable Credential** that each Participant can issue and sign. 
+In this way, when all Participants have issued their SignatureCredential referencing the contract it will be possible to create Verifiable Presentations that contain all the Signatures.
+
+Here is an example of how CredentialSignature can be used:
+
+
+```json
+
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://w3id.org/gaia-x/development#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://consumer.com/data-usage-contract-signatures.123456",
+  "issuer": "did:web:consumer.com",
+  "validFrom": "2023-07-28T12:31:49.074Z",
+  "validUntil": "2023-10-26T12:31:49.074Z",
+  "credentialSubject": {
+    "type": "dataUsageContract",
+    "id": "https://provider.com/data-usage-contract.654321",
+    "digestSRI": "sha384-lHKDHh0msc6pRx8PhDOMkNtSI8bOfsp4giNbUrw71nXXLf13nTqNJoRp3Nx+ArVK"
+  },
+  "credentialStatus": {
+    "id": "https://consumer.com/status/1#127",
+    "type": "BitstringStatusListEntry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "127",
+    "statusListCredential": "https://consumer.com/credentials/status/1"
+  }
+}
+```
+
+
 
 
