@@ -194,90 +194,44 @@ This section is dedicated to including the human assertions in the trusted inter
 
 ## Assertion
 
-The assertion entity is designed to represent different types of **will** of an **actor** (or party), the will to sign a contract, the will to provide consent towards a certain action, the will to accept an agreement, the will to provide permission for a certain action and so on. The only condition needed to make assertions viable is that their reference must be another verifiable credential; for example, a Signature assertion must refer to a Contract in the form of a VC.
+The assertion entity is designed to represent different types of **will** of an **actor** (or party), the will to sign a contract, the will to provide consent towards a certain action or purpose, the will to accept an agreement, the will to provide permission for a certain action and so on. The only condition needed to make assertions viable is that their reference must be another verifiable credential; for example, a Signature assertion must refer to a Contract in the form of a VC.
 Assertions must not use a publicly resolvable [identifier](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) and can be **Revocable** or **Irrevocable**, and this can be achieved simply by using the [`credentialStatus`](https://www.w3.org/TR/vc-data-model-2.0/#status) in conjunction with the [BitstringCredentialStatusList](https://www.w3.org/TR/vc-bitstring-status-list/)
 
-The **Assertion Credential** issued by any **Actor** as trustworthy affirmation of **will** mainly defines:
+The **Assertion Credential** issued by any **Actor** as trustworthy affirmation of **will** on **something** mainly defines:
 
-- The description of the **Scope** within which the semantic model, the trusted identity providers, and the semantic identity providers are to be considered valid.  
-- The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
-- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Trusted Identity Providers** are used to check if a Cryptographic Digital Identity is to be considered Trusted.
+- The **Strongly Bound TrustedDigitalIdentity** that identifies the Issuer and checks that the Controller **must** be a human.
+- The **Type** of assertion the **Actor** want to express.  
+- The **Date and Time** of when the assertion was expressed by the **Actor**.  
+- The **Target Id** of **what** the assertion is expressed for, that can be resolved (at least from all verifiers) and verified using the **DigestSRI** 
+- The **DigestSRI** that is used to check that the target is not tampered/modified.
+- The **Credential Status** as defined in the [`credentialStatus` property of Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#status) for revocable/suspendable assertions.
 
-The `TrustScope` credential is defined by the following attributes:
-
-| Attribute                | Type    | Mandatory | Comment                                             |
-|--------------------------|-------------------|-----------|-----------------------------------------------------|
-| `scopeDescription`       | String            | No        | A description of the scope of the Trusted Scope |
-| `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
-
-## Assertion Credential
-
-The Signature Credential is a Verifiable Credential introduced to express digital signatures in a machine-readable and interoperable form enabling several scenarios ranging from data transaction permissions to agreement signing. It allows participants to cryptographically sign digital resources and bind the signature to the identity of the signer with verifiable integrity.  
-
-By using a verification method associated with a certificate issued under a recognized legal trust framework (e.g. eIDAS), the Signature Credential may achieve legal equivalence with handwritten signatures, depending on the assurance level (e.g., Qualified Electronic Signature).  
-
-A specialisation of this credential, Signed Agreement Credential, introduces revocability to model agreements whose validity may be rescinded over time. These credentials can be issued independently by each participant and later aggregated into a Verifiable Presentation, thus enabling decentralised signature workflows for contracts such as data usage agreements.  
-
-
-Important note: the issuance of a signature credential from a digital identity bound to a human-controlled device/wallet, can be used to realise the "human-in-the-loop" interaction.
-
-This approach promotes semantic clarity, cryptographic assurance, and interoperability across use cases involving legally binding actions, whether initiated by humans or automated agents. It also enables trust anchors and policies defined in the Gaia-X Trust Framework to validate each Signature Credential independently. 
-
-### Multiple Signatures using SignatureCredential specialisations
-
-The **SignatureCredential** in the trust model defined by the ICAM Document, represents a general purpose and machine readable *signature* that Participants are asked to provide in several contexts, one of the most important of these contexts is represented by the [Data Transaction](...) section of the Data Exchange Document(version...) where this credential will be used to sign **[Data Usage Agreement](...)** and **Data Product Usage Contract**.
-
-The concept behind this credential is the same as the credentials issued by the compliance service, to issue Participant Credentials and  Service Offering Credentials (using the "credentialSubject" claim), where the **credentialSubject** consists in:
+The `Assertion` credential is defined by the following attributes:
 
 | Attribute   | Type | Mandatory | Comment                             |
 |-------------|------|-----------|-------------------------------------|
-| `type`      | string | Yes | Indicating the *type* of the subject to be Signed |
-| `id`        | URI    | Yes | A resolvable single URI as defined in the [VC Specification](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) identifying the subject to be Signed |
-| `digestSRI` | String | Yes | Integrity of related Resources as defined in [W3C VC Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/#integrity-of-related-resources) to ensure that referenced resource is not changed/modified/tampered(still identical in time) | 
+| `humanIdentity` | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the issuer, used to check that **`controller` = ControllerKind.Human** | 
+| `type`      | AssertionType | Yes | Indicating the *type* of the Assertion to be expressed |
+| `validFrom` | Validity    | Yes | See `validFrom` as defined in the [VC Data Model v 2.0 - Validity](https://www.w3.org/TR/vc-data-model-2.0/#validity-period) |
+| `id`        | URI    | Yes | A resolvable single identifier as defined in the [VC Data Model v 2.0 - Identifiers](https://www.w3.org/TR/vc-data-model-2.0/#identifiers) identifying the target of the Assertion |
+| `digestSRI` | String | Yes | Integrity of related Resources as defined in [VC Data Model v2.0 - Integrity of related resources](https://www.w3.org/TR/vc-data-model-2.0/#integrity-of-related-resources) to ensure that the referenced target is not changed/modified/tampered (still identical in time) | 
+| `credentialStatus` | Status    | No | Optional and must not be used for non-revocable assertions, see [VC Data Model v 2.0 - Status](https://www.w3.org/TR/vc-data-model-2.0/#status) |
 
-Another important factor is represented by the fact that, issuing and signing this credential with a **verificationMethod** bound to a certificate that has legal relevance (e.g eIDAS) gives it the same level of trust, enabling the possibility to check the `gx:legalValidity` property of the **Signature Check Type** (see `gx:signers` property).
+The `AssertionType` defines the type of **will** expressed by the **Actor** (the issuer) :
 
-#### SignedAgreementCredential
+| Value             | Description 
+|-------------------|--------------------------------------------------------------------------------|
+| `Signature`       | A signature attached to the targeted resource (contracts, SLAs) |
+| `Consent`         | A signed consent given to the targeted resource (purposes, GDPRs, terms and conditions, etc) |
+| `Permission`      | A signed permission to allow the targeted resource (Data/Infra/App Provisionings, access to a service, etc) |
+| `Acceptance`      | A signed acceptance of the targeted resource (agreements, constraints, terms and conditions, etc) |
+| `Acknowledge`     | A signed acknowledgement of the targeted resource (rules, generic/custom defined targets) |
 
-The **SignedAgreementCredential** is a specialization of **SignatureCredential** that represents a *Revocable Signed Agreement* given by a participant to a specific subject (e.g. Data Usage Agreement, GDPR Agreement, etc.) and the only difference is that it can be revoked.
+### Multiple Signatures of a Contract using AssertionCredential
 
- 
-#### Data Usage Agreement Example
+Using the **AssertionCredential** to add multiple signatures to a verifiable credential that represents a contract is quite simple and consists only of requesting all the signer actors (human identities) to issue an unrevocable AssertionCredential of type `Signature` that targets the contract verifiable credential.
 
-In a Data Transaction the **Data Provider**(did:web:provider.com) and a **Data Consumer**(did:web:consumer.com) must agree to a **Data Usage Agreement** (**id** "https://provider.com/data-usage-contract.654321") and this is done treating "Signatures" as a **Verifiable Credential** that each Participant can issue and sign. 
-In this way, when all Participants have issued their SignatureCredential referencing the contract it will be possible to create Verifiable Presentations that contain all the Signatures.
+**IMPORTANT NOTE**
+Assertions are fully **Machine Readable** and can easily be checked and verified by machines/services
 
-Here is an example of how CredentialSignature can be used:
-
-
-```json
-
-{
-  "@context": [
-    "https://www.w3.org/ns/credentials/v2",
-    "https://w3id.org/gaia-x/development#"
-  ],
-  "type": [
-    "VerifiableCredential"
-  ],
-  "id": "https://consumer.com/data-usage-contract-signatures.123456",
-  "issuer": "did:web:consumer.com",
-  "validFrom": "2023-07-28T12:31:49.074Z",
-  "validUntil": "2023-10-26T12:31:49.074Z",
-  "credentialSubject": {
-    "type": "dataUsageContract",
-    "id": "https://provider.com/data-usage-contract.654321",
-    "digestSRI": "sha384-lHKDHh0msc6pRx8PhDOMkNtSI8bOfsp4giNbUrw71nXXLf13nTqNJoRp3Nx+ArVK"
-  },
-  "credentialStatus": {
-    "id": "https://consumer.com/status/1#127",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "revocation",
-    "statusListIndex": "127",
-    "statusListCredential": "https://consumer.com/credentials/status/1"
-  }
-}
-```
 
