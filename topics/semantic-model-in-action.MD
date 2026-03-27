@@ -107,8 +107,7 @@ Here is an example of how CredentialSignature can be used:
 
 {
   "@context": [
-    "https://www.w3.org/ns/credentials/v2",
-    "https://w3id.org/gaia-x/development#"
+    "https://www.w3.org/ns/credentials/v2"
   ],
   "type": [
     "VerifiableCredential"
