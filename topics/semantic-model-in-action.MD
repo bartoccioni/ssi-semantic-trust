@@ -16,14 +16,6 @@ This specialisation is a self-issued credential that entitles the issuing organi
    - **vocabularies** - defines the semantics of *Roles/Identity Attributes* and **Domain Specific Credentials** that are valid in the defined scope.
    - **trusted list** - to assign and revoke *Roles/Identity Attributes* and **Domain Specific Credentials** to its parties (users, natural persons, endpoint services, etc) by issuing **PartyCredentials**.
 
-#### **Gaia-X Compliance Trust Scope** 
-This credential is issued by  Gaia-X and entitles an organisation to issue attestations about specific claims in the context of Gaia-X Compliance.
-
-   - **scope** - issue attestations used to attest Gaia-X Compliance.
-   - **trusted issuers** - the organisation accredited by Gaia-X to issue attestations in the defined scope.
-   - **vocabularies** - defines the semantics applicable to issue attestations in the defined scope.
-   - **trusted list** - to assign and revoke attestations issued to Gaia-X Providers. Trust Anchor Credential specialisation examples
-
 #### **Ecosystem Trust Scope**
 This specialisation is a self-issued credential that entitles an Ecosystem operator to define:
 
