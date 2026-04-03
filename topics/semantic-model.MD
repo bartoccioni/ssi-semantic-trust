@@ -133,10 +133,11 @@ The `PartyCredential` is defined by the following attributes:
 | `hasPolicy`             | policy[] in ODRL | No | A list of `policy` expressed using ODRL to be used to verify if the credential is to be considered "active" in the **Scope** |
 | `identityAttributes`    | Attribute[]         | No | A list of Identity Attributes (defined in the scope schema/vocabulary), to be used in an Attribute-Based Access Control (ABAC) context | 
 | `identityRoles`         | Role[]         | No | A list of Identity Roles (defined in the scope schema/vocabulary), to be used in a Role-Based Access Control (RBAC) context | 
+| `identityPermissions`   | Permission[]         | No | A list of Identity Permissions (defined in the scope schema/vocabulary), to be used in a Permission-Based Access Control context | 
 | `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **issuer** of this credential (same public key and digest) | 
 | `credentialStatus` | Status | No | Optional and must not be used for non-revocable assertions, see [VC Data Model v 2.0 - Status](https://www.w3.org/TR/vc-data-model-2.0/#status) |
 
-The `Attribute` and the `Role` types of the **Scope** are defined in the **TrustScopeCredential** schema/vocabularies together with the Trusted Issuers. They can vary from a simple value/description type to a complex domain specific object.
+The `Attribute`, `Role` and the `Permission` types of the **Scope** are defined in the **TrustScopeCredential** schema/vocabularies together with the Trusted Issuers. They can vary from a simple value/description type to a complex domain specific object.
 
 Here is an example of value/description type of Role:
 
