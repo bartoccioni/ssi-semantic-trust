@@ -8,11 +8,21 @@ This document has the purpose of describing in a very concise and understandable
 The **Who** section must describe all the involved Actors in each Trust Scope, starting from the **Owner** who establishes both **Identity and Semantic Providers** up to all the **Parties**.
 
 ### Trust Scope Owner
-Is the ["Trust Anchor"](https://en.wikipedia.org/wiki/Trust_anchor) (precisely as intended in cryptography) of a Trust Scope, and not only has full control over it, but is also the starting point of the "chain of trust" of the **Trust Scope** itself.
+Is a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identity-layer) that represents the ["Trust Anchor"](https://en.wikipedia.org/wiki/Trust_anchor) (precisely as intended in cryptography) of a Trust Scope, and not only has full control over it, but is also the **starting point** of the "chain of trust" of the **Trust Scope** itself.
 
-### Trusted Identity Providers
+### Trusted Identity Provider
+One or more [Cryptographic Digital Identities](digital-identities.MD#cryptographic-identity-layer) that are selected by the **Trust Scope Owner**, that must guarantee trustworthiness of all the **Parties** at the cryptography level issuing/revoking [TrustedDigitalIdentity](digital-identities.MD#trusted-digital-identity) credential. The **Trust Identity Provider** also has the very important responsibility of ensuring the reliability of the **ControllerKind** property of the Parties, especially when the "Human in the Loop" is mandatory.
 
+### Semantic Identity Provider
+One or more [Cryptographic Digital Identities](digital-identities.MD#cryptographic-identity-layer) that are selected by the **Trust Scope Owner**, that must provide the semantic definition of the following [**What**](#what) section.
 
-- How the Actors in a Scope can interact with each other
-- How to extend trust across Scopes and enable inter-scope Actors' interactions
-- Require a human action in interactions between Actors
+## What
+The **What** section describes the **Semantic Domain** objects of the **Trust Scope** and the **Rules** that apply to all parties when acting on the context of the **Trust Scope**
+
+### Standard Domain
+
+### Custom Specific Domain
+
+## How
+The **How** section describes the **Rules** that apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section
+
