@@ -1,8 +1,8 @@
 # Trust Architecture Document 
 This document has the purpose of describing in a very concise and understandable way the **Architecture of Trust** implemented by one or more **Trust Scopes** and their **relations**. At its core, it must use the semantic model to answer the following questions:
-- Who 
-- What
-- How
+- [**Who**](#who) 
+- [**What**](#what)
+- [**How**](#how)
 
 ## Who
 The **Who** section must describe all the involved Actors in each Trust Scope, starting from the **Owner** who establishes both **Identity and Semantic Providers** up to all the **Parties**.
