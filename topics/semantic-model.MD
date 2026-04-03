@@ -24,7 +24,10 @@ The **Trusted Digital Identity Credential** has the purpose of describing the **
    - Standard
    - Qualified
 - The **PublicKeyId** in the form of a resolvable link to the digital identity's verificationMethod used to uniquely resolve **ONE and ONLY** key pair of the possible list contained in the DID.
-- The **PublicKeyDigest** as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession.
+- The **PublicKeyDigest** of the unique public key resolved using **PublicKeyId** and to be used by the holder to demonstrate Proof of Possession (see note about digest).
+
+**NOTE ABOUT DIGEST**
+All the digests used in this document are to be considered as defined in the [Subresource Integrity specification](https://www.w3.org/TR/sri/#the-integrity-attribute) and have the purpose to ensure integrity external referenced resources.
 
 The `TrustedDigitalIdentity` credential is defined by the following attributes:
 
@@ -121,7 +124,7 @@ The **Party Credential** issued by one of the **Trusted Issuers** of the **Trust
 - The **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
 - The **Policies** (expressed in ODRL) that define the conditions under which this credential is to be considered "active".
 - The **Identity Role and Attributes** defined in the **Scope** and assigned to the Party.
-- The **Parent** used to create and verify the chain of delegation.
+- The **Parent** and its **Digest** that are used to create and verify the chain of delegation.
 - The **Credential Status** as defined in the [`credentialStatus` property of Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#status) to enable revocation/suspension.
 
 The `PartyCredential` is defined by the following attributes:
@@ -135,11 +138,12 @@ The `PartyCredential` is defined by the following attributes:
 | `identityRoles`         | Role[]         | No | A list of Identity Roles (defined in the scope schema/vocabulary), to be used in a Role-Based Access Control (RBAC) context | 
 | `identityPermissions`   | Permission[]         | No | A list of Identity Permissions (defined in the scope schema/vocabulary), to be used in a Permission-Based Access Control context | 
 | `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **issuer** of this credential (same public key and digest) | 
+| `parentPartyCredentialDigest` | String  | No | The digest (hash) of the `parentPartyCredential` resolved credential used to ensure the integrity of the chain | 
 | `credentialStatus` | Status | No | Optional and must not be used for non-revocable assertions, see [VC Data Model v 2.0 - Status](https://www.w3.org/TR/vc-data-model-2.0/#status) |
 
 The `Attribute`, `Role` and the `Permission` types of the **Scope** are defined in the **TrustScopeCredential** schema/vocabularies together with the Trusted Issuers. They can vary from a simple value/description type to a complex domain specific object.
 
-Here is an example of value/description type of Role:
+Here is an example of a value/description type of Role:
 
 | Value         | Description 
 |---------------|--------------------------------------|
@@ -149,7 +153,7 @@ Here is an example of value/description type of Role:
 | `HR-Manager`  | Human Resource manager |
 
 **VERY IMPORTANT NOTE**
-To enable the delegation of rights (Power Of Attorney-like ) using the **PartyCredential**, the `parentPartyCredential` property must refer to a credential that is a superset of the `identityAttributes` and `identityRoles` properties with no exception and the **TrustedDigitalIdentity** identified by the **parentPartyCredential.holder** property MUST match the **issuer** of this credential to prove that the delagation is valid.
+To enable the delegation (Power Of Attorney-like ) using the **PartyCredential**, the `parentPartyCredential` property must refer to a credential that is a superset of the `identityAttributes`, `identityRoles` and `identityPermissions` properties with no exception and the **TrustedDigitalIdentity** identified by the **parentPartyCredential.holder** property MUST match the **issuer** of this credential to prove that the delegation is valid.
 
 
 # Extend your trust
