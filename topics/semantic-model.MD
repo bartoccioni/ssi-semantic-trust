@@ -100,7 +100,7 @@ The **TrustScope Credential** issued by the **Trust Scope Owner** mainly defines
 - The description of the **Scope** within which the semantic model, the trusted identity providers, and the semantic identity providers are to be considered valid.  
 - The **TrustedIssuers** entitled to issue **Credentials** in the above **Scope**
 - The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
-- The **Vocabularies** (expressed in SHACL) that semantically define the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
+- The **Schemas** (expressed in JSON-LD Context) that are used to validate the **Credentials** which can be issued by the **TrustedIssuer** in the defined **Scope**.
 - The **Trusted Identity Providers** are used to check if a Cryptographic Digital Identity is to be considered Trusted.
 
 The `TrustScope` credential is defined by the following attributes:
@@ -110,7 +110,7 @@ The `TrustScope` credential is defined by the following attributes:
 | `scopeDescription`       | String            | No        | A description of the scope of the Trusted Scope |
 | `trustedIssuers`         | TrustedDigitalIdentity[] | Yes | A list of **Strongly Bound TrustedDigitalIdentity** identifying the **Semantic Identity Provider** issuer(s) of the Scope |
 | `vocabularies`           | URI[]             | No        | A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope |
-| `schemas`                | URI[]             | No        | A list of URIs pointing to the schemas semantically describing the Scope |
+| `schemas`                | URI[]             | No        | A list of URIs pointing to the schemas (JSON-LD Context) used to validate credentials in the Scope |
 | `trustedIdentityProviders` | TrustedIdentityProvider[] | Yes       | A list of **Trusted Identity Provider** considered trustworthy in the Scope used to check **Trusted Digital Identities** |
 
 ## Party Credential 
