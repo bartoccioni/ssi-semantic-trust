@@ -14,7 +14,7 @@ Is a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identi
 One or more [Cryptographic Digital Identities](digital-identities.MD#cryptographic-identity-layer) that are selected by the **Trust Scope Owner** issuing a [TrustedDigitalIdentity](digital-identities.MD#trusted-digital-identity) credential, that must guarantee trustworthiness of all the **Parties** at the cryptography level issuing/revoking [TrustedIdentityProvider](digital-identities.MD#trusted-identity-provider) credential. The **Trust Identity Provider** also has the very important responsibility of ensuring the reliability of the **ControllerKind** property of the Parties, especially when the "Human in the Loop" is mandatory.
 
 ### Semantic Identity Provider
-One or more [Cryptographic Digital Identities](digital-identities.MD#cryptographic-identity-layer) that are selected by the **Trust Scope Owner**, that must provide the semantic model of what is defined in the [**What**](#what) section and ensure the application all the **rules** defined in the [**How**](#how) section.
+One or more [Trusted Digital Identities](digital-identities.MD##trusted-digital-identity) that are selected by the **Trust Scope Owner**, that must provide the semantic model of what is defined in the [**What**](#what) section and ensure the application all the **rules** defined in the [**How**](#how) section.
 
 ## What
 The **What** section describes the **Domain** of the **Trust Scope** that will be used by all parties of the **Trust Scope**. 
