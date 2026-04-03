@@ -29,5 +29,6 @@ Here is where all unforeseen IAA scopes can be defined and added to the standard
 If a [Semantic Identity Provider](#semantic-identity-provider) needs to have different specialisations of PartyCredential to identify different types of Party, like organisations, users, members, participants, etc, here is the place where those specialisations have to be defined.
 
 ## How
-The **How** section describes the **Rules** that apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section
+The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
+
 
