@@ -26,16 +26,21 @@ One or more [Trusted Digital Identities](semantic-model.MD##trusted-digital-iden
 ## What
 The **What** section establishes how the [**Semantic Model**](semantic-model.MD) is used in the **Domain** of the **Trust Scope** and how it is extended to cover unforeseen use cases. Concretely, is the ontology of the semantic model translated into vocabulary and schema used to check all the Verifiable Credentials used within the context of the **Trust Scope**, including `TrustScope`, `TrustedIdentityProvider`, and `TrustedDigitalIdentity` that are used in the [**Who**](#who) section. 
 
-### Standard Model
-Here is where the IAA scope is implemented and formalised, listing all Attributes, Roles, and Permissions that will be used in the **Trust Scope** 
+### Use and customise the Model
+Here is where the IAA scope is implemented and formalised, listing all the foreseen Attributes, Roles, and Permissions that will be used in the **Trust Scope** 
 
-### Extensions Model
-Here is where all unforeseen IAA scopes can be defined and added to the standard Model to be used in the **Trust Scope** 
+### Extend the model Model
+Here is where all unforeseen IAA entities can be defined and added to the standard Model to be used in the **Trust Scope** 
 
 ### PartyCredential specialisations
 If a [Semantic Identity Provider](#semantic-identity-provider) needs to have different specialisations of PartyCredential to identify different types of Party, like organisations, users, members, participants, etc, here is the place where those specialisations have to be defined.
 
+### Assertions
+Here is where the assertion specialisations are defined to be then used by Parties
+
 ## How
 The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
+The rules are implemented using ODRL policies and will be as follows:
 
+`ControllerKind` is `Human` 
 
