@@ -15,11 +15,10 @@ Is a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identi
 - [TrustScope](semantic-model.MD#trust-scope) credential that contains all information defining the **Trust Scope** itself.
 
 ### Trusted Identity Providers
-One or more [Cryptographic Digital Identities](digital-identities.MD#cryptographic-identity-layer) that are selected by the **Trust Scope Owner** that must guarantee trustworthiness of all the **Parties** at the cryptography level by issuing the [TrustedDigitalIdentity](semantic-model.MD#trusted-digital-identity) credentials.
-The **Trust Identity Provider** also has the very important responsibility of issuing the [Trusted Digital Identity](semantic-model.MD##trusted-digital-identity) credential to all Parties and ensuring the reliability of its **ControllerKind** property, especially when the "Human in the Loop" is mandatory.
+One or more [Trusted Digital Identity](semantic-model.MD##trusted-digital-identity) that must guarantee trustworthiness of all the **Parties** at the cryptography level by issuing the [TrustedDigitalIdentity](semantic-model.MD#trusted-digital-identity) credentials and their [Type](#trusted-identity-types), especially when the "Human in the Loop" is mandatory.
 
 ### Trusted Identity Types
-The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations.
+The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations, clearly stating when the `ControllerKind` is **Human**
 
 ### Semantic Identity Providers
 One or more [Trusted Digital Identities](semantic-model.MD##trusted-digital-identity) that are selected by the **Trust Scope Owner**, that must provide the semantic model of what is defined in the [**What**](#what) section and ensure the application all the **rules** defined in the [**How**](#how) section.
