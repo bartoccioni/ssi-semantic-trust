@@ -40,14 +40,12 @@ Here is where the assertion specialisations are defined to be used by Parties
 
 ## How
 The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
-The rules are implemented using ODRL policies and will be as follows:
-
-The party that can issue a specific Assertion/PartyCredential credential must be a human
+The rules are expressed using ODRL policies, and the rule "The party must be a human" becomes :
 ```
 {
   "constraint": [
     {
-      "leftOperand": "ControllerKind",
+      "leftOperand": "TrustedDigitalIdentity.ControllerKind",
       "operator": "eq",
       "rightOperand": "Human"
     }
