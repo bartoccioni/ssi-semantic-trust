@@ -1,8 +1,8 @@
 # Trust Architecture Document 
 This document has the purpose of describing in a very concise and understandable way the **Architecture of Trust** implemented by one or more **Trust Scopes** and their **relations**. At its core, it must use the semantic model to answer the following questions:
-- [**Who**](#who) 
-- [**What**](#what)
-- [**How**](#how)
+- [**Who**](#who) is involved
+- [**What**](#what) is the subject 
+- [**How**](#how) is done
 
 ## Who
 The **Who** section must describe all the involved Actors in each Trust Scope, starting from the **Owner** who establishes both **Identity and Semantic Providers** up to all the **Parties**.
@@ -36,11 +36,22 @@ Here is where all unforeseen IAA entities can be defined and added to the standa
 If a [Semantic Identity Provider](#semantic-identity-provider) needs to have different specialisations of PartyCredential to identify different types of Party, like organisations, users, members, participants, etc, here is the place where those specialisations have to be defined.
 
 ### Assertions
-Here is where the assertion specialisations are defined to be then used by Parties
+Here is where the assertion specialisations are defined to be used by Parties
 
 ## How
 The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
 The rules are implemented using ODRL policies and will be as follows:
 
-`ControllerKind` is `Human` 
+The party that can issue a specific Assertion/PartyCredential credential must be a human
+```
+{
+  "constraint": [
+    {
+      "leftOperand": "ControllerKind",
+      "operator": "eq",
+      "rightOperand": "Human"
+    }
+  ]
+}
+```
 
