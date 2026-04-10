@@ -21,7 +21,10 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
     - Trust Relation and Federation
   - [Trustworthy human in the loop](./topics/semantic-model.MD#trustworthy-human-in-the-loop)
     - Assertions (Signatures, Permissions, Acceptances, Consents, Acknowledges)
-- [SSI Trust Architecture Document](./topics/ssi-trust-architecture.MD) [WIP]
+- [SSI Trust Architecture Document](./topics/ssi-trust-architecture.MD)
+  - [**Who**](./topics/ssi-trust-architecture.MD#who) is involved
+  - [**What**](./topics/ssi-trust-architecture.MD#what) is the subject 
+  - [**How**](./topics/ssi-trust-architecture.MD#how) is done
 - [Semantic Model in action](./topics/semantic-model.MD) [WIP]
   - Organisation
   - Data Space
