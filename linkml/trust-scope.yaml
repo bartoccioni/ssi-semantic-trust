@@ -1,0 +1,43 @@
+id: https://w3id.org/sem-trust/v1#trust-scope
+name: dataspace-scope
+prefixes:
+  linkml: https://w3id.org/linkml/
+  odrl: http://www.w3.org/ns/odrl/2/
+  st: https://w3id.org/sem-trust/v1
+imports:
+  - linkml:types
+  - digital-identity
+default_prefix: st
+default_range: string
+
+classes:
+
+  TrustScope:
+    description: The class representing a trust scope.
+    slots:
+      - scopeDescription
+      - trustedIssuers
+      - vocabularies
+      - schemas
+
+slots:
+  scopeDescription:
+    description: The description of the scope
+    required: false
+    multivalued: false
+    range: string
+  trustedIssuers:
+    description: A list of Strong digital identity of the trusted issuer for the data space
+    required: true
+    multivalued: true
+    range: StrongDigitalIdentity
+  vocabularies:
+    description: a list of vocabularies expressed in SHACL Shape JSON-LD
+    required: false
+    multivalued: true
+    range: uri
+  schemas:
+    description: a list of schemas expressed in JSON-LD
+    required: false
+    multivalued: true
+    range: uri

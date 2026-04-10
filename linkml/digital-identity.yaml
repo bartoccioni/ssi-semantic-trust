@@ -1,0 +1,64 @@
+id: https://w3id.org/sem-trust/v1#digital-identity
+name: party
+prefixes:
+  linkml: https://w3id.org/linkml/
+  st: https://w3id.org/sem-trust/v1
+imports:
+  - linkml:types
+default_prefix: st
+default_range: string
+
+classes:
+
+  DigitalIdentity:
+    description: A Digital Identity that use ONE and only ONE keypair.
+    slots: 
+      - publicKeyId
+      - digitalIdentityType
+
+  StrongDigitalIdentity:
+    description: A Digital Identity Strongly Bound to the public key identified by its publicKeyId.
+    is_a: DigitalIdentity
+    slots: 
+      - publicKeyDigest
+
+
+
+slots:
+  # slots for Digital Identities
+  publicKeyId: 
+    identifier: true
+    description: The resolvable link to the digital identity's verificationMethod used to uniquely identify ONE and ONLY key pair
+    required: true
+    multivalued: false
+    range: uri
+  publicKeyDigest:
+    description: The digest of the public key identified by the Digital Identity id attribute 
+    required: true
+    multivalued: false
+    range: string
+  digitalIdentityType:
+    description: The type of the Digital Identity 
+    required: false
+    multivalued: false
+    range: DigitalIdentityType
+
+enums:
+  DigitalIdentityType:
+    permissible_values:
+      Anonymous:
+        description: Keypair self issued and no info on controller 
+      AnonymousMachineControlled:
+        description: Keypair self issued and controlled by machine or process
+      AnonymousHumanControlled:
+        description: Keypair managed by a device wallet controlled by a human (multi-factor authenticated)
+      ManchineControlled:
+        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and fully controlled by machine or process
+      HumanControlled:
+        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
+      eIDASMachineControlled:
+        description: Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and fully controlled by machine or process
+      eIDASHumanControlled:
+        description: Keypair bound (associated) to a credential (VC, X509) issued by  an eIDAS Qualified Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
+
+

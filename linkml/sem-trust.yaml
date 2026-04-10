@@ -1,0 +1,19 @@
+id: https://w3id.org/sem-trust/v1#semtrust
+name: sem-trust
+prefixes:
+  linkml: https://w3id.org/linkml/
+  st: https://w3id.org/sem-trust/v1
+imports:
+  - linkml:types
+  - trust-scope
+  - membership
+  - identity-proof
+  - identity-attributes
+default_prefix: st
+default_range: string
+
+classes:
+
+  SemTrust:
+    description: Top level element of SSI Semantic Trust Ontology.
+    abstract: true

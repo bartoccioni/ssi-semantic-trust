@@ -1,0 +1,12 @@
+id: https://w3id.org/sem-trust/v1#attribute
+name: attribute
+
+enums:
+  Attribute:
+    permissible_values:
+      ACCESS_LEVEL_BASIC:
+        description: Basic Access Level attribute
+      ACCESS_LEVEL_MEDIUM:
+        description: Medium Access Level attribute
+      ACCESS_LEVEL_FULL:
+        description: Full Access Level attribute

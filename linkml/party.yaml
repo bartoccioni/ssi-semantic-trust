@@ -1,0 +1,47 @@
+id: https://w3id.org/sem-trust/v1#party
+name: party
+prefixes:
+  linkml: https://w3id.org/linkml/
+  odrl: http://www.w3.org/ns/odrl/2/
+  st: https://w3id.org/sem-trust/v11
+imports:
+  - linkml:types
+  - digital-identity
+  - attribute
+  - role
+  - permission
+default_prefix: st
+default_range: string
+
+classes:
+
+  Party:
+    description: The class representing a generic Party.
+    slots:
+      - holder
+      - hasPolicy
+      - identityAttributes
+      - parentParty
+
+slots:
+  identityAttributes:
+    description: A list of Identity Attributes to be used in a ABAC context
+    required: false
+    multivalued: true
+    any_of:
+      - range: BuiltInIdentityAttribute 
+      - range: CustomIdentityAttribute
+  holder:
+    description: Strong digital identity of the holder
+    required: true
+    multivalued: false
+    range: StrongDigitalIdentity
+  hasPolicy:
+    description: a list of policy expressed using ODRL
+    name: hasPolicy
+    range: string
+    slot_uri: odrl:hasPolicy
+  parentParty:
+    description: Used to create a delegation chain and contains a resolvable link to the parent Party Credential where the holder MUST be equal to the signer(issuer verificationMethod) of this credential
+    required: false
+    range: Party

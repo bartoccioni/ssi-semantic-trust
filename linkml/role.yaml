@@ -1,0 +1,16 @@
+id: https://w3id.org/sem-trust/v1#role
+name: role
+
+enums:
+  Role:
+    permissible_values:
+      CONSUMER:
+        description: Role that identifies the consumer participant
+      DATA_PROVIDER:
+        description: Role that identifies the data provider participant
+      APP_PROVIDER:
+        description: Role that identifies the application provider participant
+      INFRA_PROVIDER:
+        description: Role that identifies the infrastructure provider participant
+      GOVERNANCE_AUTHORITY:
+        description: Role that identifies the goverance authority participant

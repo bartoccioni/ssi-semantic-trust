@@ -1,0 +1,14 @@
+id: https://w3id.org/sem-trust/v1#permission
+name: permission
+
+enums:
+  Permission:
+    permissible_values:
+      DATA_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Data Catalogue
+      APP_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Application Catalogue
+      INFRA_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Infrastructure
+      DATA_SEARCHER:
+        description: Permission used for tagging an end user able to act only as a searcher in the catalogue, but he can't start a contract negotiation or transfer process
