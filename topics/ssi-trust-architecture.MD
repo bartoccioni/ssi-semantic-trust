@@ -35,12 +35,12 @@ Here is where all unforeseen IAA entities can be defined and added to the standa
 ### PartyCredential specialisations
 If a [Semantic Identity Provider](#semantic-identity-provider) needs to have different specialisations of PartyCredential to identify different types of Party, like organisations, users, members, participants, etc, here is the place where those specialisations have to be defined.
 
-### Assertions
-Here is where the assertion specialisations are defined to be used by Parties
+### Assertions specialisations
+Here is where the assertion specialisations are defined to be used by Parties (consents, permissions, etc.)
 
 ## How
 The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
-The rules are expressed using ODRL policies, and the rule "The party must be a human" becomes :
+The rules and constraints are expressed using ODRL policies, and the rule "The party must be a human" becomes:
 ```
 {
   "constraint": [
@@ -52,4 +52,3 @@ The rules are expressed using ODRL policies, and the rule "The party must be a h
   ]
 }
 ```
-
