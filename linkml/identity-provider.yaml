@@ -1,0 +1,66 @@
+id: https://w3id.org/sem-trust/v1#identity-provider
+name: identity-provider
+prefixes:
+  linkml: https://w3id.org/linkml/
+  st: https://w3id.org/sem-trust/v1
+imports:
+  - linkml:types
+  - digital-identity
+default_prefix: st
+default_range: string
+
+classes:
+
+  TrustIdentityProvider:
+    description: A special Trusted Digital Identity that has the responsability to ensure the trustwortyness of a party issuing/revoking them TrustedDigitalIdentity credentials.
+    slots: 
+      - trustedIssuer
+      - type
+      - kind
+      - endpoint
+
+slots:
+  # slots for Digital Identities
+  trustedIssuer: 
+    identifier: true
+    description: A Strongly Bound TrustedDigitalIdentity used to resolve the public key of the provider
+    required: true
+    multivalued: false
+    range: TrustedDigitalIdentity
+  type:
+    description: The type of the Identity Provider
+    required: true
+    multivalued: false
+    range: ProviderType
+  kind:
+    description: The kind of implementation of the trusted list is used to check the issued Trusted Digital Identities
+    required: true
+    multivalued: false
+    range: TrustedListKind
+  endpoint:
+    description: The address of the above trusted list
+    required: false
+    multivalued: false
+    range: uri
+
+enums:
+  ProviderType:
+    permissible_values:
+      PKI:
+        description: Public Key Infrastructure - PKI-based Trusted Identity Provider that issues X509 Certificates
+      SSI:
+        description: Self Sovereign Identity - SSI-based Trusted Identity Provider that uses DIDs and Verifiable Credentials
+      Both:
+        description: The combination of SSI and PKI that uses X509 Certificates in the DIDs
+  TrustedListKind:
+    permissible_values:
+      API:
+        description: Generic Trusted List REST API Specification
+      OCSP:
+        description: Online Certificate Status Protocol (OCSP) on Trust Service Provider (TSP) or Qualified TSP in case of eIDAS framework
+      TRAIN:
+        description: Trusted list of trust anchors using DNS(SEC)
+      EBSI:
+        description: European Blockchain Services Infrastructure (EBSI)
+      OTHER:
+        description: Other possible implementations

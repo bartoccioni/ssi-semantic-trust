@@ -1,5 +1,5 @@
 id: https://w3id.org/sem-trust/v1#trust-scope
-name: dataspace-scope
+name: trust-scope
 prefixes:
   linkml: https://w3id.org/linkml/
   odrl: http://www.w3.org/ns/odrl/2/
@@ -7,6 +7,7 @@ prefixes:
 imports:
   - linkml:types
   - digital-identity
+  - identity-provider
 default_prefix: st
 default_range: string
 
@@ -19,25 +20,26 @@ classes:
       - trustedIssuers
       - vocabularies
       - schemas
+      - trustedIdentityProviders
 
 slots:
   scopeDescription:
-    description: The description of the scope
+    description: The description of the trusted scope
     required: false
     multivalued: false
     range: string
   trustedIssuers:
-    description: A list of Strong digital identity of the trusted issuer for the data space
+    description: A list of Strongly Bound TrustedDigitalIdentity identifying the Semantic Identity Provider issuer(s) of the Scope
     required: true
     multivalued: true
-    range: StrongDigitalIdentity
+    range: TrustedDigitalIdentity
   vocabularies:
-    description: a list of vocabularies expressed in SHACL Shape JSON-LD
+    description: A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope
     required: false
     multivalued: true
     range: uri
   schemas:
-    description: a list of schemas expressed in JSON-LD
+    description: A list of Trusted Identity Provider considered trustworthy in the Scope used to check Trusted Digital Identities
     required: false
     multivalued: true
-    range: uri
+    range: TrustIdentityProvider

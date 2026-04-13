@@ -6,9 +6,13 @@ prefixes:
 imports:
   - linkml:types
   - trust-scope
-  - membership
-  - identity-proof
-  - identity-attributes
+  - trust-relation
+  - digital-identity
+  - party
+  - identity-provider
+  - attribute
+  - role
+  - permission
 default_prefix: st
 default_range: string
 

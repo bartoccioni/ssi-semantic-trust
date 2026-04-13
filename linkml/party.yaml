@@ -7,6 +7,7 @@ prefixes:
 imports:
   - linkml:types
   - digital-identity
+  - scope
   - attribute
   - role
   - permission
@@ -14,23 +15,19 @@ default_prefix: st
 default_range: string
 
 classes:
-
   Party:
     description: The class representing a generic Party.
     slots:
       - holder
+      - trustScope
       - hasPolicy
       - identityAttributes
-      - parentParty
+      - identityRoles
+      - identityPermissions
+      - parentPartyCredential
+      - parentPartyCredentialDigest
 
 slots:
-  identityAttributes:
-    description: A list of Identity Attributes to be used in a ABAC context
-    required: false
-    multivalued: true
-    any_of:
-      - range: BuiltInIdentityAttribute 
-      - range: CustomIdentityAttribute
   holder:
     description: Strong digital identity of the holder
     required: true
@@ -41,7 +38,27 @@ slots:
     name: hasPolicy
     range: string
     slot_uri: odrl:hasPolicy
-  parentParty:
+  identityAttributes:
+    description: A list of Identity Attributes to be used in a ABAC context
+    required: false
+    multivalued: true
+    range: Attribute 
+  identityRoles:
+    description: A list of Identity Roles to be used in a RBAC context
+    required: false
+    multivalued: true
+    range: Role
+  identityPermissions:
+    description: A list of Identity Permissions to be used in a Access Control context
+    required: false
+    multivalued: true
+    range: Permission 
+  parentPartyCredential:
     description: Used to create a delegation chain and contains a resolvable link to the parent Party Credential where the holder MUST be equal to the signer(issuer verificationMethod) of this credential
     required: false
     range: Party
+  parentPartyCredentialDigest:
+    description: The digest (hash) of the public key identified by the Digital Identity id attribute 
+    required: true
+    multivalued: false
+    range: string

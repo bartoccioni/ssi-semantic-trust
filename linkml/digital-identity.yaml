@@ -1,5 +1,5 @@
 id: https://w3id.org/sem-trust/v1#digital-identity
-name: party
+name: digital-identity
 prefixes:
   linkml: https://w3id.org/linkml/
   st: https://w3id.org/sem-trust/v1
@@ -10,19 +10,13 @@ default_range: string
 
 classes:
 
-  DigitalIdentity:
-    description: A Digital Identity that use ONE and only ONE keypair.
+  TrustedDigitalIdentity:
+    description: A Cryptographic Digital Identity that is identified by ONE and only ONE keypair and whose trustwortyness is guaranteed by a Trust Identity Provider.
     slots: 
       - publicKeyId
-      - digitalIdentityType
-
-  StrongDigitalIdentity:
-    description: A Digital Identity Strongly Bound to the public key identified by its publicKeyId.
-    is_a: DigitalIdentity
-    slots: 
+      - controller
+      - level
       - publicKeyDigest
-
-
 
 slots:
   # slots for Digital Identities
@@ -33,32 +27,35 @@ slots:
     multivalued: false
     range: uri
   publicKeyDigest:
-    description: The digest of the public key identified by the Digital Identity id attribute 
+    description: The digest (hash) of the public key identified by the Digital Identity id attribute 
     required: true
     multivalued: false
     range: string
-  digitalIdentityType:
-    description: The type of the Digital Identity 
+  controller:
+    description: The kind of the controller of the Digital Identity 
+    required: true
+    multivalued: false
+    range: ControllerKind
+  level:
+    description: The trust level of the Trusted Identity Provider
     required: false
     multivalued: false
-    range: DigitalIdentityType
+    range: ControllerKind
 
 enums:
-  DigitalIdentityType:
+  ControllerKind:
     permissible_values:
       Anonymous:
         description: Keypair self issued and no info on controller 
-      AnonymousMachineControlled:
+      MachineControlled:
         description: Keypair self issued and controlled by machine or process
-      AnonymousHumanControlled:
-        description: Keypair managed by a device wallet controlled by a human (multi-factor authenticated)
-      ManchineControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and fully controlled by machine or process
       HumanControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by a Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
-      eIDASMachineControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by an eIDAS Qualified Trust Service Provider (TSP) and fully controlled by machine or process
-      eIDASHumanControlled:
-        description: Keypair bound (associated) to a credential (VC, X509) issued by  an eIDAS Qualified Trust Service Provider (TSP) and managed by a device wallet controlled by a human (multi-factor authenticated)
-
-
+        description: Keypair managed by a device wallet controlled by a human (multi-factor authenticated)
+  TrustLevel:
+    permissible_values:
+      Scoped:
+        description: The Trusted Identity Provider is self-defined in the scope (e.g. data space, ecosystem, organisation, etc)
+      Standard:
+        description: The Trusted Identity Provider is a Trust Service Provider belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.)
+      Qualified:
+        description: The Trusted Identity Provider is a Qualified Trust Service Provider belonging to the eIDAS Framework (both X.509 certificats and EUDIW Wallet)
