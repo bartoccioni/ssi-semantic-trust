@@ -59,12 +59,12 @@ This entity is representing the **Trusted Identity Provider** itself as defined 
 
 The `TrustedIdentityProvider` credential is defined by the following attributes:
 
-| Attribute                | Type    | Mandatory | Comment                                             |
-|--------------------------|-------------------|-----------|-----------------------------------------------------|
-| `trustedIssuer`          | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
-| `trustedProviderType`    | ProviderType | No        | Which type of trusted identity provider  | 
-| `trustedListKind`    | TrustedListKind | No        | Which kind of implementation of the trusted list is used to check the issued trusted identity | 
-| `trustedListEndpoint`    | URI               | No        | The address of the above trusted list | 
+| Attribute       | Type    | Mandatory | Comment                                             |
+|-----------------|-------------------|-----------|-----------------------------------------------------|
+| `trustedIssuer` | TrustedDigitalIdentity | Yes        | A **Strongly Bound TrustedDigitalIdentity** used to resolve the public key of the provider | 
+| `type`          | ProviderType | No        | Which type of trusted identity provider  | 
+| `kind`          | TrustedListKind | No        | Which kind of implementation of the trusted list is used to check the issued trusted identity | 
+| `endpoint`      | URI               | No        | The address of the above trusted list | 
 
 The `ProviderType` defines the technology framework stack:
 
