@@ -29,7 +29,7 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
     - [**Semantic Identity Providers**](./topics/ssi-trust-architecture.MD#semantic-identity-providers)
   - [**What**](./topics/ssi-trust-architecture.MD#what) is the subject
     - [**Use and customise the Model**](./topics/ssi-trust-architecture.MD#use-and-customise-the-model)
-    - [Extend the model Model](./topics/ssi-trust-architecture.MD#extend-the-model-model)
+    - [Extend the Model](./topics/ssi-trust-architecture.MD#extend-the-model)
     - [PartyCredential specialisations](./topics/ssi-trust-architecture.MD#partycredential-specialisations)
     - [Assertions specialisations](./topics/ssi-trust-architecture.MD#assertions-specialisations)
   - [**How**](./topics/ssi-trust-architecture.MD#how) is done
