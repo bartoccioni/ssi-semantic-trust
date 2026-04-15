@@ -39,8 +39,10 @@ If a [Semantic Identity Provider](#semantic-identity-provider) needs to have dif
 Here is where the assertion specialisations are defined to be used by Parties (consents, permissions, etc.)
 
 ## How
-The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
-The rules and constraints are expressed using ODRL policies, and the rule "The party must be a human" becomes:
+The **How** section describes the **Rules** and **Constraints** that the Trust Scope Owner wants to enforce to all party types identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section, basically defines **who does what**
+
+### Rules and Constraints
+The rules and constraints are used to define **Who** do **What** and are expressed using ODRL policies, and the rule "The party of a certain credential must be a human" becomes:
 ```
 {
   "constraint": [
