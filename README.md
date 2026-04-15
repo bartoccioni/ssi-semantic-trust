@@ -32,7 +32,7 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
     - [Extend the Model](./topics/ssi-trust-architecture.MD#extend-the-model)
     - [PartyCredential specialisations](./topics/ssi-trust-architecture.MD#partycredential-specialisations)
     - [Assertions specialisations](./topics/ssi-trust-architecture.MD#assertions-specialisations)
-  - [**How**](./topics/ssi-trust-architecture.MD#how) is done
+  - [**How**](./topics/ssi-trust-architecture.MD#how) is done ([**Who**](./topics/ssi-trust-architecture.MD#who) does [**What**](./topics/ssi-trust-architecture.MD#what))
     - [**Rules and Contraints**](./topics/ssi-trust-architecture.MD#rules-and-constraints)
 - [Semantic Model in action](./topics/semantic-model.MD) [WIP]
   - Organisation
