@@ -29,7 +29,7 @@ The **What** section establishes how the [**Semantic Model**](semantic-model.MD)
 ### Use and customise the Model
 Here is where the IAA scope is implemented and formalised, listing all the foreseen Attributes, Roles, and Permissions that will be used in the **Trust Scope** 
 
-### Extend the model Model
+### Extend the Model
 Here is where all unforeseen IAA entities can be defined and added to the standard Model to be used in the **Trust Scope** 
 
 ### PartyCredential specialisations
