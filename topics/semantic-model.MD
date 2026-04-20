@@ -184,7 +184,7 @@ The `TrustMapping` defines how the translation between **Scope Specific Credenti
 | Attribute          | Type          | Mandatory | Comment                                           |
 |--------------------|---------------|-----------|---------------------------------------------------|
 | `trusted`          | Credential Type or Claim | Yes | A **Type** or one of its **Claim** defined in the schema/vocabulary of the **Trusted** scope | 
-| `traslated`        | Credential Type or Claim | Yes | A **Type** or one of its **Claim** defined in the schema/vocabulary of the **Trustor** scope | 
+| `translated`        | Credential Type or Claim | Yes | A **Type** or one of its **Claim** defined in the schema/vocabulary of the **Trustor** scope | 
 
 
 
