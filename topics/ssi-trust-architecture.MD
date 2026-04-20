@@ -18,7 +18,7 @@ Is a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identi
 One or more [Trusted Digital Identity](semantic-model.MD##trusted-digital-identity) that must guarantee trustworthiness of all the **Parties** at the cryptography level by issuing the [TrustedDigitalIdentity](semantic-model.MD#trusted-digital-identity) credentials and their [Type](#trusted-identity-types), especially when the "Human in the Loop" is mandatory.
 
 ### Trusted Identity Types
-The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations, clearly stating when the `ControllerKind` is **Human**
+The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations, clearly stating when the `controller` is **Human**
 
 ### Semantic Identity Providers
 One or more [Trusted Digital Identities](semantic-model.MD##trusted-digital-identity) that are selected by the **Trust Scope Owner**, that must provide the semantic model of what is defined in the [**What**](#what) section and ensure the application all the **rules** defined in the [**How**](#how) section.
@@ -47,7 +47,7 @@ The rules and constraints are used to define **Who** do **What** and are express
 {
   "constraint": [
     {
-      "leftOperand": "TrustedDigitalIdentity.ControllerKind",
+      "leftOperand": "TrustedDigitalIdentity.controller",
       "operator": "eq",
       "rightOperand": "Human"
     }
