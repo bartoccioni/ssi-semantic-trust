@@ -1,4 +1,4 @@
-id: https://w3id.org/sem-trust/v1#digital-identity
+id: https://w3id.org/sem-trust/v1/digital-identity
 name: digital-identity
 prefixes:
   linkml: https://w3id.org/linkml/

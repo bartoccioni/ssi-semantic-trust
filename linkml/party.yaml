@@ -1,4 +1,4 @@
-id: https://w3id.org/sem-trust/v1#party
+id: https://w3id.org/sem-trust/v1/party
 name: party
 prefixes:
   linkml: https://w3id.org/linkml/

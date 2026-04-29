@@ -1,11 +1,11 @@
-id: https://w3id.org/sem-trust/v1#identity-provider
+id: https://w3id.org/sem-trust/v1/identity-provider
 name: identity-provider
 prefixes:
   linkml: https://w3id.org/linkml/
   st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
-  - digital-identity
+#  - digital-identity
 default_prefix: st
 default_range: string
 
@@ -26,7 +26,8 @@ slots:
     description: A Strongly Bound TrustedDigitalIdentity used to resolve the public key of the provider
     required: true
     multivalued: false
-    range: TrustedDigitalIdentity
+    # range: TrustedDigitalIdentity
+    range: string
   type:
     description: The type of the Identity Provider
     required: true

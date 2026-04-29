@@ -1,23 +1,283 @@
-id: https://w3id.org/sem-trust/v1#semtrust
+id: https://w3id.org/sem-trust/v1/semtrust
 name: sem-trust
 prefixes:
   linkml: https://w3id.org/linkml/
+  odrl: https://www.w3.org/ns/odrl/2/
   st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
-  - trust-scope
-  - party
-  - trust-relation
-  - digital-identity
-  - identity-provider
-  - attribute
-  - role
-  - permission
+#  - slots
+#  - enum
 default_prefix: st
 default_range: string
 
 classes:
-
   SemTrust:
     description: Top level element of SSI Semantic Trust Ontology.
     abstract: true
+
+  TrustedDigitalIdentity:
+    description: A Cryptographic Digital Identity that is identified by ONE and only ONE keypair and whose trustwortyness is guaranteed by a Trust Identity Provider.
+    slots: 
+      - publicKeyId
+      - controller
+      - level
+      - publicKeyDigest
+
+  TrustIdentityProvider:
+    description: A special Trusted Digital Identity that has the responsability to ensure the trustwortyness of a party issuing/revoking them TrustedDigitalIdentity credentials.
+    slots: 
+      - trustedIssuer
+      - type
+      - kind
+      - endpoint
+
+  TrustScope:
+    description: The class representing a trust scope.
+    slots:
+      - scopeDescription
+      - trustedIssuers
+      - vocabularies
+      - schemas
+      - trustedIdentityProviders
+  Party:
+    description: The class representing a generic Party.
+    slots:
+      - holder
+      - trustScope
+      - hasPolicy
+      - identityAttributes
+      - identityRoles
+      - identityPermissions
+      - parentPartyCredential
+      - parentPartyCredentialDigest
+
+  TrustRelation:
+    description: The class representing a trust relation between scopes.
+    slots:
+      - trustorScope
+      - trustedScope
+      - hasPolicy
+      - mapping
+
+  TrustMapping:
+    description: The class defining how the translation between Scopes is to be performed
+    slots:
+      - trusted
+      - trustor
+
+
+enums:
+  ControllerKind:
+    permissible_values:
+      Anonymous:
+        description: Keypair self issued and no info on controller 
+      MachineControlled:
+        description: Keypair self issued and controlled by machine or process
+      HumanControlled:
+        description: Keypair managed by a device wallet controlled by a human (multi-factor authenticated)
+  TrustLevel:
+    permissible_values:
+      Scoped:
+        description: The Trusted Identity Provider is self-defined in the scope (e.g. data space, ecosystem, organisation, etc)
+      Standard:
+        description: The Trusted Identity Provider is a Trust Service Provider belonging to an internationally accepted Trust Framework( CA/B Forum for SSL X509 Certificates, Etc.)
+      Qualified:
+        description: The Trusted Identity Provider is a Qualified Trust Service Provider belonging to the eIDAS Framework (both X.509 certificats and EUDIW Wallet)
+#enums Identity Provider
+  ProviderType:
+    permissible_values:
+      PKI:
+        description: Public Key Infrastructure - PKI-based Trusted Identity Provider that issues X509 Certificates
+      SSI:
+        description: Self Sovereign Identity - SSI-based Trusted Identity Provider that uses DIDs and Verifiable Credentials
+      Both:
+        description: The combination of SSI and PKI that uses X509 Certificates in the DIDs
+  TrustedListKind:
+    permissible_values:
+      API:
+        description: Generic Trusted List REST API Specification
+      OCSP:
+        description: Online Certificate Status Protocol (OCSP) on Trust Service Provider (TSP) or Qualified TSP in case of eIDAS framework
+      TRAIN:
+        description: Trusted list of trust anchors using DNS(SEC)
+      EBSI:
+        description: European Blockchain Services Infrastructure (EBSI)
+      OTHER:
+        description: Other possible implementations
+  Attribute:
+    permissible_values:
+      ACCESS_LEVEL_BASIC:
+        description: Basic Access Level attribute
+      ACCESS_LEVEL_MEDIUM:
+        description: Medium Access Level attribute
+      ACCESS_LEVEL_FULL:
+        description: Full Access Level attribute
+  Role:
+    permissible_values:
+      CONSUMER:
+        description: Role that identifies the consumer participant
+      DATA_PROVIDER:
+        description: Role that identifies the data provider participant
+      APP_PROVIDER:
+        description: Role that identifies the application provider participant
+      INFRA_PROVIDER:
+        description: Role that identifies the infrastructure provider participant
+      GOVERNANCE_AUTHORITY:
+        description: Role that identifies the goverance authority participant
+  Permission:
+    permissible_values:
+      DATA_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Data Catalogue
+      APP_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Application Catalogue
+      INFRA_PROVIDER_PUBLISHER:
+        description: Permission needed for publishing Infrastructure
+      DATA_SEARCHER:
+        description: Permission used for tagging an end user able to act only as a searcher in the catalogue, but he can't start a contract negotiation or transfer process
+
+slots:
+  # slots for TrustedDigitalIdentity
+  publicKeyId: 
+    identifier: true
+    description: The resolvable link to the digital identity's verificationMethod used to uniquely identify ONE and ONLY key pair
+    required: true
+    multivalued: false
+    range: uri
+  publicKeyDigest:
+    description: The digest (hash) of the public key identified by the Digital Identity id attribute 
+    required: true
+    multivalued: false
+    range: string
+  controller:
+    description: The kind of the controller of the Digital Identity 
+    required: true
+    multivalued: false
+    range: ControllerKind
+  level:
+    description: The trust level of the Trusted Identity Provider
+    required: false
+    multivalued: false
+    range: ControllerKind
+  # slots for IdentityProvider
+  trustedIssuer: 
+    identifier: true
+    description: A Strongly Bound TrustedDigitalIdentity used to resolve the public key of the provider
+    required: true
+    multivalued: false
+    range: TrustedDigitalIdentity
+  type:
+    description: The type of the Identity Provider
+    required: true
+    multivalued: false
+    range: ProviderType
+  kind:
+    description: The kind of implementation of the trusted list is used to check the issued Trusted Digital Identities
+    required: true
+    multivalued: false
+    range: TrustedListKind
+  endpoint:
+    description: The address of the above trusted list
+    required: false
+    multivalued: false
+    range: uri
+# slots for TrustScope
+  scopeDescription:
+    description: The description of the trusted scope
+    required: false
+    multivalued: false
+    range: string
+  trustedIssuers:
+    description: A list of Strongly Bound TrustedDigitalIdentity identifying the Semantic Identity Provider issuer(s) of the Scope
+    required: true
+    multivalued: true
+    range: TrustedDigitalIdentity
+  vocabularies:
+    description: A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope
+    required: false
+    multivalued: true
+    range: uri
+  schemas:
+    description: A list of URIs pointing to the schemas (JSON-LD Context) used to validate credentials in the Scope
+    required: false
+    multivalued: true
+    range: uri
+  trustedIdentityProviders:
+    description: A list of Trusted Identity Provider considered trustworthy in the Scope used to check Trusted Digital Identities
+    required: true
+    multivalued: true
+    range: TrustIdentityProvider
+# slots for Party
+  holder:
+    description: Strong digital identity of the holder
+    required: true
+    multivalued: false
+    range: TrustedDigitalIdentity
+  trustScope:
+    description: A TrustScopeCredential used to validate this credential (issuers, attributes, roles, permissions) in the Scope
+    required: false
+    multivalued: false
+    range: TrustScope
+  hasPolicy:
+    description: A list of policy expressed using ODRL to be used to verify if this credential is to be considered "active" and "valid"
+    name: hasPolicy
+    range: string
+    slot_uri: odrl:hasPolicy
+  identityAttributes:
+    description: A list of Identity Attributes to be used in a ABAC context
+    required: false
+    multivalued: true
+    range: Attribute 
+  identityRoles:
+    description: A list of Identity Roles to be used in a RBAC context
+    required: false
+    multivalued: true
+    range: Role
+  identityPermissions:
+    description: A list of Identity Permissions to be used in a Access Control context
+    required: false
+    multivalued: true
+    range: Permission 
+  parentPartyCredential:
+    description: Used to create a delegation chain and contains a resolvable link to the parent Party Credential where the holder MUST be equal to the signer(issuer verificationMethod) of this credential
+    required: false
+    range: Party
+  parentPartyCredentialDigest:
+    description: The digest (hash) of the public key identified by the Digital Identity id attribute 
+    required: true
+    multivalued: false
+    range: string
+# slots for TrustRelation
+  trustorScope:
+    description: The trustor scope that extend its trust 
+    required: false
+    multivalued: false
+    range: TrustScope
+  trustedScope:
+    description: The trusted scope to trust
+    required: false
+    multivalued: false
+    range: TrustScope
+  mapping:
+    description: A list of TrustMapping, to be used for translation
+    required: false
+    multivalued: true
+    range: TrustMapping
+  trusted:
+    description: A Type or one of its Claim defined in the schema/vocabulary of the Trusted scope  
+    required: false
+    multivalued: false
+    any_of:
+    - range: Attribute
+    - range: Role
+    - range: Permission
+  trustor:
+    description: A Type or one of its Claim defined in the schema/vocabulary of the Trustor scope
+    required: false
+    multivalued: false
+    any_of:
+    - range: Attribute
+    - range: Role
+    - range: Permission
+
+

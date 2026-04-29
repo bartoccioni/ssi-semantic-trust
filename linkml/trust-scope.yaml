@@ -1,4 +1,4 @@
-id: https://w3id.org/sem-trust/v1#trust-scope
+id: https://w3id.org/sem-trust/v1/trust-scope
 name: trust-scope
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -6,7 +6,7 @@ prefixes:
   st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
-  - digital-identity
+#  - digital-identity
   - identity-provider
 default_prefix: st
 default_range: string
@@ -23,6 +23,7 @@ classes:
       - trustedIdentityProviders
 
 slots:
+# slots for TrustScope
   scopeDescription:
     description: The description of the trusted scope
     required: false
@@ -32,7 +33,7 @@ slots:
     description: A list of Strongly Bound TrustedDigitalIdentity identifying the Semantic Identity Provider issuer(s) of the Scope
     required: true
     multivalued: true
-    range: TrustedDigitalIdentity
+    range: string
   vocabularies:
     description: A list of URIs pointing to the vocabularies (SHACL) semantically describing the Scope
     required: false
