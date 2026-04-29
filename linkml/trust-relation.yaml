@@ -2,7 +2,7 @@ id: https://w3id.org/sem-trust/v1#trust-relation
 name: trust-relation
 prefixes:
   linkml: https://w3id.org/linkml/
-  odrl: http://www.w3.org/ns/odrl/2/
+  odrl: https://www.w3.org/ns/odrl/2/
   st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
@@ -40,16 +40,11 @@ slots:
     required: false
     multivalued: false
     range: TrustScope
-  hasPolicy:
-    description: A list of policy expressed using ODRL to be used to verify if the relation is to be considered "active" and "valid"
-    name: hasPolicy
-    range: string
-    slot_uri: odrl:hasPolicy
   mapping:
     description: A list of TrustMapping, to be used for translation
     required: false
     multivalued: true
-    range: TrustIdentityProvider
+    range: TrustMapping
   trusted:
     description: A Type or one of its Claim defined in the schema/vocabulary of the Trusted scope  
     required: false

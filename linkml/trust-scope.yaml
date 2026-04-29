@@ -2,7 +2,7 @@ id: https://w3id.org/sem-trust/v1#trust-scope
 name: trust-scope
 prefixes:
   linkml: https://w3id.org/linkml/
-  odrl: http://www.w3.org/ns/odrl/2/
+  odrl: https://www.w3.org/ns/odrl/2/
   st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
@@ -39,7 +39,12 @@ slots:
     multivalued: true
     range: uri
   schemas:
-    description: A list of Trusted Identity Provider considered trustworthy in the Scope used to check Trusted Digital Identities
+    description: A list of URIs pointing to the schemas (JSON-LD Context) used to validate credentials in the Scope
     required: false
+    multivalued: true
+    range: uri
+  trustedIdentityProviders:
+    description: A list of Trusted Identity Provider considered trustworthy in the Scope used to check Trusted Digital Identities
+    required: true
     multivalued: true
     range: TrustIdentityProvider

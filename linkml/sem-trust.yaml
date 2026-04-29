@@ -6,9 +6,9 @@ prefixes:
 imports:
   - linkml:types
   - trust-scope
+  - party
   - trust-relation
   - digital-identity
-  - party
   - identity-provider
   - attribute
   - role

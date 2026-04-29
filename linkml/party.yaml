@@ -2,12 +2,12 @@ id: https://w3id.org/sem-trust/v1#party
 name: party
 prefixes:
   linkml: https://w3id.org/linkml/
-  odrl: http://www.w3.org/ns/odrl/2/
-  st: https://w3id.org/sem-trust/v11
+  odrl: https://www.w3.org/ns/odrl/2/
+  st: https://w3id.org/sem-trust/v1
 imports:
   - linkml:types
   - digital-identity
-  - scope
+  - trust-scope
   - attribute
   - role
   - permission
@@ -32,9 +32,14 @@ slots:
     description: Strong digital identity of the holder
     required: true
     multivalued: false
-    range: StrongDigitalIdentity
+    range: TrustedDigitalIdentity
+  trustScope:
+    description: A TrustScopeCredential used to validate this credential (issuers, attributes, roles, permissions) in the Scope
+    required: false
+    multivalued: false
+    range: TrustScope
   hasPolicy:
-    description: a list of policy expressed using ODRL
+    description: A list of policy expressed using ODRL to be used to verify if this credential is to be considered "active" and "valid"
     name: hasPolicy
     range: string
     slot_uri: odrl:hasPolicy
