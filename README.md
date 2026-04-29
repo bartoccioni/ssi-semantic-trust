@@ -23,8 +23,17 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
     - Assertions (Signatures, Permissions, Acceptances, Consents, Acknowledges)
 - [SSI Trust Architecture Document](./topics/ssi-trust-architecture.MD)
   - [**Who**](./topics/ssi-trust-architecture.MD#who) is involved
-  - [**What**](./topics/ssi-trust-architecture.MD#what) is the subject 
-  - [**How**](./topics/ssi-trust-architecture.MD#how) is done
+    - [**Trust Scope Owner**](./topics/ssi-trust-architecture.MD#trust-scope-owner)
+    - [**Trusted Identity Providers**](./topics/ssi-trust-architecture.MD#trusted-identity-providers)
+    - [**Trusted Identity Types**](./topics/ssi-trust-architecture.MD#trusted-identity-types)
+    - [**Semantic Identity Providers**](./topics/ssi-trust-architecture.MD#semantic-identity-providers)
+  - [**What**](./topics/ssi-trust-architecture.MD#what) is the subject
+    - [**Use and customise the Model**](./topics/ssi-trust-architecture.MD#use-and-customise-the-model)
+    - [Extend the Model](./topics/ssi-trust-architecture.MD#extend-the-model)
+    - [PartyCredential specialisations](./topics/ssi-trust-architecture.MD#partycredential-specialisations)
+    - [Assertions specialisations](./topics/ssi-trust-architecture.MD#assertions-specialisations)
+  - [**How**](./topics/ssi-trust-architecture.MD#how) is done ([**Who**](./topics/ssi-trust-architecture.MD#who) does [**What**](./topics/ssi-trust-architecture.MD#what))
+    - [**Rules and Contraints**](./topics/ssi-trust-architecture.MD#rules-and-constraints)
 - [Semantic Model in action](./topics/semantic-model.MD) [WIP]
   - Organisation
   - Data Space

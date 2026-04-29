@@ -18,7 +18,7 @@ Is a [Cryptographic Digital Identity](digital-identities.MD#cryptographic-identi
 One or more [Trusted Digital Identity](semantic-model.MD##trusted-digital-identity) that must guarantee trustworthiness of all the **Parties** at the cryptography level by issuing the [TrustedDigitalIdentity](semantic-model.MD#trusted-digital-identity) credentials and their [Type](#trusted-identity-types), especially when the "Human in the Loop" is mandatory.
 
 ### Trusted Identity Types
-The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations, clearly stating when the `ControllerKind` is **Human**
+The list of the allowed Parties [cryptographic and trusted identity](digital-identities.MD#cryptographic-and-trusted-identity-layers-combined) combinations, clearly stating when the `controller` is **Human**
 
 ### Semantic Identity Providers
 One or more [Trusted Digital Identities](semantic-model.MD##trusted-digital-identity) that are selected by the **Trust Scope Owner**, that must provide the semantic model of what is defined in the [**What**](#what) section and ensure the application all the **rules** defined in the [**How**](#how) section.
@@ -29,7 +29,7 @@ The **What** section establishes how the [**Semantic Model**](semantic-model.MD)
 ### Use and customise the Model
 Here is where the IAA scope is implemented and formalised, listing all the foreseen Attributes, Roles, and Permissions that will be used in the **Trust Scope** 
 
-### Extend the model Model
+### Extend the Model
 Here is where all unforeseen IAA entities can be defined and added to the standard Model to be used in the **Trust Scope** 
 
 ### PartyCredential specialisations
@@ -39,13 +39,15 @@ If a [Semantic Identity Provider](#semantic-identity-provider) needs to have dif
 Here is where the assertion specialisations are defined to be used by Parties (consents, permissions, etc.)
 
 ## How
-The **How** section describes the **Rules** and **Constraints** that the Semantic Identity Provider apply to all parties identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section. 
-The rules and constraints are expressed using ODRL policies, and the rule "The party must be a human" becomes:
+The **How** section describes the **Rules** and **Constraints** that the Trust Scope Owner wants to enforce to all party types identified in the [**Who**](#who) section when acting on the context of the **Semantic Domain** defined in the [**What**](#what) section, basically defines **who does what**
+
+### Rules and Constraints
+The rules and constraints are used to define **Who** do **What** and are expressed using ODRL policies, and the rule "The party of a certain credential must be a human" becomes:
 ```
 {
   "constraint": [
     {
-      "leftOperand": "TrustedDigitalIdentity.ControllerKind",
+      "leftOperand": "TrustedDigitalIdentity.controller",
       "operator": "eq",
       "rightOperand": "Human"
     }
