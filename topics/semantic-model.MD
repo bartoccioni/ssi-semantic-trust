@@ -123,7 +123,8 @@ The **Party Credential** issued by one of the **Trusted Issuers** of the **Trust
 - The **Strongly Bound TrustedDigitalIdentity** identifying the Holder who can do the **Proof of Possesion** of this credential
 - The **Trust Scope Credential** that defines the **Issuers**, **Schemas**, **Vocabolaries** necessary to the verification of this credential.
 - The **Policies** (expressed in ODRL) that define the conditions under which this credential is to be considered "active".
-- The **Identity Role and Attributes** defined in the **Scope** and assigned to the Party.
+- The **Identity Role, Attributes and Permissions** defined in the **Scope** and assigned to the Party.
+- The **Delegatable** flag that establishes if the credential can be delegated in a chain of delegation.
 - The **Parent** and its **Digest** that are used to create and verify the chain of delegation.
 - The **Credential Status** as defined in the [`credentialStatus` property of Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#status) to enable revocation/suspension.
 
@@ -137,6 +138,7 @@ The `PartyCredential` is defined by the following attributes:
 | `identityAttributes`    | Attribute[]         | No | A list of Identity Attributes (defined in the scope schema/vocabulary), to be used in an Attribute-Based Access Control (ABAC) context | 
 | `identityRoles`         | Role[]         | No | A list of Identity Roles (defined in the scope schema/vocabulary), to be used in a Role-Based Access Control (RBAC) context | 
 | `identityPermissions`   | Permission[]         | No | A list of Identity Permissions (defined in the scope schema/vocabulary), to be used in a Permission-Based Access Control context | 
+| `delegatable`           | Boolena  | No | A flag that establishes if the credential can be used as `parentPartyCredential` of a child party credential | 
 | `parentPartyCredential` | PartyCredential  | No | A resolvable link to the parent **PartyCredential** where the **holder** MUST be equal to the **issuer** of this credential (same public key and digest) | 
 | `parentPartyCredentialDigest` | String  | No | The digest (hash) of the `parentPartyCredential` resolved credential used to ensure the integrity of the chain | 
 | `credentialStatus` | Status | No | Optional and must not be used for non-revocable assertions, see [VC Data Model v 2.0 - Status](https://www.w3.org/TR/vc-data-model-2.0/#status) |
