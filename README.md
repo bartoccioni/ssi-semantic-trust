@@ -34,8 +34,8 @@ The `List` is like a summary that contains all the above-mentioned topics and ca
     - [Assertions specialisations](./topics/ssi-trust-architecture.MD#assertions-specialisations)
   - [**How**](./topics/ssi-trust-architecture.MD#how) is done ([**Who**](./topics/ssi-trust-architecture.MD#who) does [**What**](./topics/ssi-trust-architecture.MD#what))
     - [**Rules and Contraints**](./topics/ssi-trust-architecture.MD#rules-and-constraints)
-- [Semantic Model in action](./topics/semantic-model.MD) [WIP]
-  - Organisation
-  - Data Space
-  - Federation between Data Spaces
+- [Semantic Model in action](./topics/semantic-model-in-action.MD) [WIP]
+  - Trust across Anonymous Cryptographic Identities (e.g. AI Agents, Applications, Services)
+  - Delegation chain, how to act "on behalf of"
+  - IAA for Data Spaces and Federation between Data Spaces
 
